@@ -240,25 +240,10 @@ class ProductController extends Controller
     {
         $Product = Product::find($request->id);
 
-        $nombre = '';
-        if ($request->hasFile('upload_image')) {
-            try {
-
-                $file = $request->file('upload_image');
-                $nombre =  time()."_".$file->getClientOriginalName();
-                
-                //indicamos que queremos guardar un nuevo archivo en el disco local
-                \Storage::disk('imgproduct')->put($nombre,  \File::get($file));
-
-            } catch (FileNotFoundException $e) {
- 
-            }
-        }
-
-        //$Product->name=$request->name;  
+        $Product->name=$request->nombre; 
         $Product->id_brand=$request->id_brand;  
         $Product->id_category=$request->id_category;  
-        $Product->base64_img=$nombre;  
+        //$Product->base64_img=$nombre;  
         $Product->presentacion=$request->presentacion;  
         $Product->peso_volumen=$request->peso_volumen;  
         $Product->codigo_barra=$request->codigo_barra;
