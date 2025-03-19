@@ -46,12 +46,12 @@ class ProductFilter extends Component
         $this->orgsParent="";
         
         $products = Product::when($this->nombre, function ($query) {
-            $query->where('name', 'like', "%$this->nombre%" );
+            $query->where('name', 'ILIKE', "%$this->nombre%" );
         }, function ($query) {
             $query->where(function ($query) {
             });
         })->when($this->codigo_barra, function ($query) {
-            $query->where('codigo_barra', 'like', "%$this->codigo_barra%" );
+            $query->where('codigo_barra', 'ILIKE', "%$this->codigo_barra%" );
         }, function ($query) {
             $query->where(function ($query) {
             });

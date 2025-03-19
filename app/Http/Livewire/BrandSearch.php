@@ -37,7 +37,7 @@ class BrandSearch extends Component
         $this->orgsParent="";
         
         $brands = Brand::when($this->descripcion, function ($query) {
-            $query->where('descripcion', 'like', "%$this->descripcion%" );
+            $query->where('descripcion', 'ILIKE', "%$this->descripcion%" );
         }, function ($query) {
             $query->where(function ($query) {
             });
