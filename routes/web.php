@@ -173,6 +173,32 @@ Route::middleware(['auth', 'user.data'])->group(function () {
     Route::get('/payment', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment');
     Route::post('/payment', [App\Http\Controllers\PaymentController::class, 'create'])->name('payment.create');
 
+    //rutas producto
+    Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('product');
+    Route::post('/product', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+    Route::delete('product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/product/edit', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+    Route::get('/product/filter', [App\Http\Controllers\ProductController::class, 'filter'])->name('product.filter');
+    Route::get('/product/details/{id}', [App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
+
+    //rutas marca
+    Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('brand');
+    Route::post('/brand', [App\Http\Controllers\BrandController::class, 'store'])->name('brand.store');
+    Route::delete('brand/{id}', [App\Http\Controllers\BrandController::class, 'destroy'])->name('brand.delete');
+    Route::get('/brand/create', [App\Http\Controllers\BrandController::class, 'create'])->name('brand.create');
+    Route::get('/brand/edit/{id}', [App\Http\Controllers\BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/brand/edit', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
+
+    //rutas departamnto
+    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+    Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+    Route::delete('category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+    Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/edit', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+
 });
 Route::get('/firma1', function () {
     return view('canvas/tablero3');
