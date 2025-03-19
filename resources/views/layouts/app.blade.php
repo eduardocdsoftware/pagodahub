@@ -66,6 +66,7 @@
                     @endif
                     </li>
                     @auth
+
                     @foreach($permisos2->records as $permisoA)
                         @if(isset($permisoA->PAGODAHUB_closecash))
                             @foreach ($permisoA->PAGODAHUB_closecash as $user)
@@ -361,6 +362,28 @@
                         @endif
                     @endforeach
                     @endauth
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Mantenimiento
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="../product">Producto</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../brand">Marca</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../department">Departamento</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../product/filter">Buscador de Productos</a>
+                    </li>
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
