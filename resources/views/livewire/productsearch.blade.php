@@ -46,6 +46,7 @@
             <th>Nombre</th>
             <th>Categoria</th>
             <th>Marca</th>
+            <th>Presentación</th>
             <th>Código de Barra</th>
             <th style="width:10% !important;">Acciones</th>
         </thead>
@@ -63,15 +64,18 @@
                         {{ $data->brand->descripcion??'' }} 
                     </td>
                     <td>
+                        {{ $data->presentacion??'' }} 
+                    </td>
+                    <td>
                         {{ $data->codigo_barra }} 
                     </td>
                     <td style="width:10% !important;">
                         <a href="{{ route('product.edit', $data->id) }}" class="btn btn-warning btn-block my-1" style="width: 100% !important;">Editar</a>
-                        <!--<form action="{{ route('product.delete', $data->id) }}" method="POST">
+                        <form action="{{ route('product.delete', $data->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-block my-1" style="width: 100% !important;" onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarjeta?');">Eliminar</button>
-                        </form>-->
+                            <button type="submit" class="btn btn-danger btn-block my-1" style="width: 100% !important;" onclick="return confirm('¿Estás seguro de que deseas eliminar esto producto?');">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
