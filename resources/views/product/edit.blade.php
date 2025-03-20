@@ -44,6 +44,10 @@
                                     <input type="text" class="form-control" id="nombre" name="nombre" value="{{$product->name}}" required>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
+                                    <label for="entrega">Precio </label>
+                                    <input type="text" class="form-control" id="precio" name="precio" value="{{$product->price}}" required>
+                                </div> 
+                                <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Categoria</p>
                                     <select class="form-control" name="id_category" id="id_category">
                                         <option value=""></option>
