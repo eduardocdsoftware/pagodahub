@@ -15,6 +15,11 @@
                         <div class="col-md-9">
                             <h4>Lista de productos</h4>
                         </div>
+                        <div class="col-md-3">
+                            <div class="d-flex justify-content-end">
+                                <a href="{{ route('product.filter') }}" class="btn btn-primary font-weight-bold">Limpiar Filtros</a>
+                            </div>
+                        </div>
                     </div>
 	            </div>
 	            <div class="card-body">

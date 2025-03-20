@@ -376,14 +376,14 @@
                                 <a class="dropdown-item" href="../brand">Marca</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../department">Departamento</a>
+                                <a class="dropdown-item" href="../category">Categoría</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../product/filter">Buscador de Productos</a>
                     </li>
-                    
+
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->

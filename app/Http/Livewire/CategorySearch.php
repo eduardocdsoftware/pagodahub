@@ -37,7 +37,7 @@ class CategorySearch extends Component
         $this->orgsParent="";
         
         $categories = Category::when($this->descripcion, function ($query) {
-            $query->where('descripcion', 'like', "%$this->descripcion%" );
+            $query->where('descripcion', 'ILIKE', "%$this->descripcion%" );
         }, function ($query) {
             $query->where(function ($query) {
             });
