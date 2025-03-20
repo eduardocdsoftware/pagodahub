@@ -70,13 +70,16 @@
                                 <img class="img-fluid" style="width: -webkit-fill-available; height: 200px;" src="{{ asset('storage/imgproduct/'.( $product->base64_img ? $product->base64_img : 'img.png' ) ) }}"/>
                             </div>
                             <p class="mt-4 mb-0 font-weight-bold">CÓDIGO DE BARRAS</p>
-                            <p class="mb-4 h4 font-weight-bold">
+                            <p class="mb-1 h4 font-weight-bold">
                                 @if (isset($product->codigo_barra) && $product->codigo_barra != '') 
                                     {{ $product->codigo_barra }}
                                 @else
                                     S/R
                                 @endif
                             </p>
+                            <div class="height-precio my-3">
+                                <p class="h5 mb-0 font-weight-bold">PRECIO: {{ $product->price }}</p>
+                            </div>   
                         </div>
                     </div>
                 
