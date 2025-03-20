@@ -26,17 +26,20 @@
                         <div class="row g-0">
                             <div class="col-md-6">
                               <div class="card-body">
-                                <h2 class="card-title">
+                                <h2 class="card-title text-uppercase">
                                     @if (isset($product->id_brand) && $product->id_brand > 0) <span class="font-color-brand">{{$product->brand->descripcion}}</span> @endif
                                     <span class="font-weight-bold">{{$product->name}}</span>
                                 </h2>
-                                <h4 class="card-title">
+                                <h4 class="card-title text-uppercase">
                                     @if (isset($product->presentacion) && $product->presentacion != '') <span class="font-color-brand">{{$product->presentacion}}</span> @endif
                                     <span class="font-weight-bold">{{$product->peso_volumen}}</span>
                                 </h4>
+                                <h4 class="card-title text-uppercase font-weight-bold">
+                                    <span class="font-color-brand">Precio: {{$product->price}}</span>
+                                </h4>
                                 <!--<p class="card-text">Esta es una tarjeta más amplia con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                                 <p class="card-text"><small class="text-muted">Última actualización hace 3 minutos</small></p>-->  
-                                <h3 class="card-title font-weight-bold mt-4">CÓDIGO DE BARRAS: 
+                                <h3 class="card-title font-weight-bold mt-4 text-uppercase">CÓDIGO DE BARRAS: 
                                     <span class="h2 font-weight-bold">
                                         @if (isset($product->codigo_barra) && $product->codigo_barra != '') 
                                             {{ $product->codigo_barra }}
