@@ -37,8 +37,8 @@
                     <form name="provider" id="provider" method="post" action="{{route( 'brand.store' )}}">
                         
                         <div class="col-md-6 mb-3">
-                            <label for="entrega">Descripción </label>
-                            <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                            <label for="entrega">Nombre de la Marca </label>
+                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" required>
                         </div>  
                         <!--<div class="col-md-6 mb-3">
                             <p for="cars" class="card-text">Sucursal</p>

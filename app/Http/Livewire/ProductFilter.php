@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
 use App\Models\Brand;
-use App\Models\Category;
+use App\Models\Department;
 
 class ProductFilter extends Component
 {
@@ -15,7 +15,7 @@ class ProductFilter extends Component
     /* Wire models */
     public $nombre;
     public $codigo_barra;
-    public $id_category;
+    public $id_department;
     public function updatingSearch()
     {
         $this->resetPage();
@@ -27,9 +27,9 @@ class ProductFilter extends Component
         $org=session()->put('misDatos',$orgs);
         $this->orgsParent = $orgs; // Almacena el valor de 'tipo' desde el primer return
     }
-    public function setCategory($id)
+    public function setDepartment($id)
     {
-        $this->id_category = $id;
+        $this->id_department = $id;
         $this->render();
     }
     public function render()
@@ -55,12 +55,12 @@ class ProductFilter extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })->when($this->id_category, function ($query) {
-            $query->where('id_category', '=', $this->id_category );
+        })->when($this->id_department, function ($query) {
+            $query->where('id_department', '=', $this->id_department );
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })/*->when($this->id_brand, function ($query) {
+        })->orderBy('name', 'ASC')/*->when($this->id_brand, function ($query) {
             $query->where('id_brand', '=', $this->id_brand );
         }, function ($query) {
             $query->where(function ($query) {
@@ -68,10 +68,10 @@ class ProductFilter extends Component
         })*/->paginate(20); // Obtener todos los brinksend de la tabla
 
         //$brands = Brand::all();
-        $categories = Category::all();
-        $parameters = collect(['nombre' => $this->nombre == '' ? null : $this->nombre, 'codigo_barra' => $this->codigo_barra == '' ? null : $this->codigo_barra, 'id_category' => $this->id_category == '' ? null : $this->id_category]);
+        $departments = Department::all();
+        $parameters = collect(['nombre' => $this->nombre == '' ? null : $this->nombre, 'codigo_barra' => $this->codigo_barra == '' ? null : $this->codigo_barra, 'id_department' => $this->id_department == '' ? null : $this->id_department]);
 
-        return view('livewire.productfilter', compact('products','categories','parameters'));
+        return view('livewire.productfilter', compact('products','departments','parameters'));
     }
 
 }
