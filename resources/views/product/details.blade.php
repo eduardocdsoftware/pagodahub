@@ -27,7 +27,6 @@
                             <div class="col-md-6">
                               <div class="card-body">
                                 <h2 class="card-title text-uppercase">
-                                    @if (isset($product->id_brand) && $product->id_brand > 0) <span class="font-color-brand">{{$product->brand->descripcion}}</span> @endif
                                     <span class="font-weight-bold">{{$product->name}}</span>
                                 </h2>
                                 <h4 class="card-title text-uppercase">

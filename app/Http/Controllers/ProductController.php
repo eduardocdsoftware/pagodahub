@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
-use App\Models\Category;
+use App\Models\Department;
 
 class ProductController extends Controller
 {
@@ -132,10 +132,10 @@ class ProductController extends Controller
         session()->put('misDatos', $orgs);
 
         $brands = Brand::all();
-        $categories = Category::all();
+        $departments = Department::all();
 
         //return view('tdc', ['orgs' => $orgs,  'permisos' => $user]);
-        return view('product.create', ['orgs' => $orgs,  'permisos' => $user,  'brands' => $brands,  'categories' => $categories]);
+        return view('product.create', ['orgs' => $orgs,  'permisos' => $user,  'brands' => $brands,  'departments' => $departments]);
     }
 
     /**
@@ -145,10 +145,10 @@ class ProductController extends Controller
     {
         $Product = new Product;
         $Product->name=$request->nombre;  
-        $Product->id_brand=$request->id_brand;  
-        $Product->id_category=$request->id_category;   
+        //$Product->id_brand=$request->id_brand;  
+        $Product->id_department=$request->id_department;   
         $Product->presentacion=$request->presentacion;  
-        $Product->peso_volumen=$request->peso_volumen;  
+        //$Product->peso_volumen=$request->peso_volumen;  
         $Product->codigo_barra=$request->codigo_barra;   
         $Product->price=$request->precio; 
 
@@ -246,9 +246,9 @@ class ProductController extends Controller
         session()->put('misDatos', $orgs);
 
         $brands = Brand::all();
-        $categories = Category::all();
+        $departments = Department::all();
 
-        return view('product.edit', ['orgs' => $orgs,  'permisos' => $user,  'product' => $Product,  'brands' => $brands,  'categories' => $categories]);
+        return view('product.edit', ['orgs' => $orgs,  'permisos' => $user,  'product' => $Product,  'brands' => $brands,  'departments' => $departments]);
     }
 
     /**
@@ -274,11 +274,11 @@ class ProductController extends Controller
         }
 
         $Product->name=$request->nombre; 
-        $Product->id_brand=$request->id_brand;  
-        $Product->id_category=$request->id_category;  
+        //$Product->id_brand=$request->id_brand;  
+        $Product->id_department=$request->id_department;  
         $Product->base64_img=$nombre;  
         $Product->presentacion=$request->presentacion;  
-        $Product->peso_volumen=$request->peso_volumen;  
+        //$Product->peso_volumen=$request->peso_volumen;  
         $Product->codigo_barra=$request->codigo_barra;
         $Product->price=$request->precio; 
         $Product->save();
@@ -422,9 +422,9 @@ class ProductController extends Controller
         session()->put('misDatos', $orgs);
 
         $brands = Brand::all();
-        $categories = Category::all();
+        $departments = Department::all();
 
-        return view('product.details', ['orgs' => $orgs,  'permisos' => $user,  'product' => $Product,  'brands' => $brands,  'categories' => $categories]);
+        return view('product.details', ['orgs' => $orgs,  'permisos' => $user,  'product' => $Product,  'brands' => $brands,  'departments' => $departments]);
     }
 
 }

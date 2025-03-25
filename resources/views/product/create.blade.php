@@ -39,27 +39,27 @@
                         <div class="row">
                             <div class="col-md-6 mb-3"> 
                                 <div class="col-md-6 mb-3 w-auto">
-                                    <label for="recibe">Nombre </label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                    <label for="recibe">Nombre del Producto </label>
+                                    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Precio </label>
                                     <input type="text" class="form-control" id="precio" name="precio" required>
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
-                                    <p for="cars" class="card-text">Categoria</p>
-                                    <select class="form-control" name="id_category" id="id_category">
+                                    <p for="cars" class="card-text">Departamento</p>
+                                    <select class="form-control" name="id_department" id="id_department">
                                         <option value=""></option>
-                                        @if (isset($categories))
-                                            @foreach ($categories as $category)
-                                                @if($category->id!=0)
-                                                    <option value="{{ $category->id }}">{{ $category->descripcion }}</option>
+                                        @if (isset($departments))
+                                            @foreach ($departments as $department)
+                                                @if($department->id!=0)
+                                                    <option value="{{ $department->id }}">{{ $department->descripcion }}</option>
                                                 @endif
                                             @endforeach
                                         @endif
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3 w-auto">
+                                <!--<div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
                                     <select class="form-control" name="id_brand" id="id_brand">
                                         <option value=""></option>
@@ -71,18 +71,18 @@
                                             @endforeach
                                         @endif
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
-                                    <input type="text" class="form-control" id="presentacion" name="presentacion">
+                                    <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion">
                                 </div> 
-                                <div class="col-md-6 mb-3 w-auto">
+                                <!--<div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Peso/Volumen </label>
-                                    <input type="text" class="form-control" id="peso_volumen" name="peso_volumen">
-                                </div>
+                                    <input type="text" class="form-control text-uppercase" id="peso_volumen" name="peso_volumen">
+                                </div>-->
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Código de Barra </label>
-                                    <input type="text" class="form-control" id="codigo_barra" name="codigo_barra">
+                                    <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra">
                                 </div> 
                                 <!--<div class="col-md-6 mb-3">
                                     <p for="cars" class="card-text">Sucursal</p>

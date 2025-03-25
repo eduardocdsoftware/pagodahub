@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
 use App\Models\Brand;
-use App\Models\Category;
+use App\Models\Department;
 
 class ProductSearch extends Component
 {
@@ -15,8 +15,8 @@ class ProductSearch extends Component
     /* Wire models */
     public $nombre;
     public $codigo_barra;
-    public $id_category;
-    public $id_brand;
+    public $id_department;
+    //public $id_brand;
     public function updatingSearch()
     {
         $this->resetPage();
@@ -51,22 +51,22 @@ class ProductSearch extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })->when($this->id_category, function ($query) {
-            $query->where('id_category', '=', $this->id_category );
+        })->when($this->id_department, function ($query) {
+            $query->where('id_department', '=', $this->id_department );
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })->when($this->id_brand, function ($query) {
+        })/*->when($this->id_brand, function ($query) {
             $query->where('id_brand', '=', $this->id_brand );
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })->paginate(20); // Obtener todos los brinksend de la tabla
+        })*/->orderBy('name', 'ASC')->paginate(20); // Obtener todos los brinksend de la tabla
 
         $brands = Brand::all();
-        $categories = Category::all();
+        $departments = Department::all();
         
-        return view('livewire.productsearch', compact('products','categories','brands'));
+        return view('livewire.productsearch', compact('products','departments','brands'));
     }
 
 }
