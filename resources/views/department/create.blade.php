@@ -23,21 +23,21 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-9">
-                            <h4>Marca</h4>
+                            <h4>Departmento</h4>
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('brand') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('department') }}" class="btn btn-primary font-weight-bold">Volver</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Formulario para envio-->
-                    <form name="provider" id="provider" method="post" action="{{route( 'brand.store' )}}">
+                    <form name="provider" id="provider" method="post" action="{{route( 'department.store' )}}">
                         
                         <div class="col-md-6 mb-3">
-                            <label for="entrega">Nombre de la Marca </label>
+                            <label for="descripcion">Nombre de Departmento </label>
                             <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" required>
                         </div>  
                         <!--<div class="col-md-6 mb-3">
@@ -53,7 +53,7 @@
                                     @endif
                                 @endif
                             </select>
-                        </div> -->                     
+                        </div>-->                    
                         <div class="form-group w-auto">
                             @csrf
                             <button class=" w-100 btn btn-outline-secondary m-0" type="button" id="button-addon2" onclick="enviarFormulario()">Crear registro</button>

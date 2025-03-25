@@ -41,7 +41,7 @@ class CategorySearch extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })/*->when($this->orgsParent, function ($query) {
+        })->orderBy('descripcion', 'ASC')/*->when($this->orgsParent, function ($query) {
             $query->where('sucursal', 'like', "%$this->orgsParent%" );
         }, function ($query) {
             $query->where(function ($query) {

@@ -22,11 +22,9 @@
                  
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-12 d-flex justify-content-between">
                             <h4>Categoria</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex justify-content-end">
+                            <div>
                                 <a href="{{ route('category') }}" class="btn btn-primary font-weight-bold">Volver</a>
                             </div>
                         </div>
@@ -37,23 +35,9 @@
                     <form name="provider" id="provider" method="post" action="{{route( 'category.update' )}}">
                         <input type="hidden" name="id" value="{{$category->id}}">
                         <div class="col-md-6 mb-3">
-                            <label for="descripcion">Descripción </label>
-                            <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{$category->descripcion}}" required>
-                        </div>  
-                        <!--<div class="col-md-6 mb-3">
-                            <p for="cars" class="card-text">Sucursal</p>
-                            <select class="form-control" name="AD_Org_ID" id="AD_Org_ID">
-                                @if (isset($orgs))
-                                    @if ($orgs)
-                                        @foreach ($orgs as $org)
-                                            @if($org->id!=0)
-                                                <option value="{{ $org->Name }}" {{ $org->Name == $department->sucursal ? 'selected' : '' }}>{{ $org->Name }}</option>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endif
-                            </select>
-                        </div>-->                   
+                            <label for="descripcion">Nombre de la Categoria </label>
+                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{$category->descripcion}}" required>
+                        </div>                   
                         <div class="form-group w-auto">
                             @csrf
                             <button class=" w-100 btn btn-outline-secondary m-0" type="button" id="button-addon2" onclick="enviarFormulario()">Actualizar</button>

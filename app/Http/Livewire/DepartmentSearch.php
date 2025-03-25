@@ -4,9 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Brand;
+use App\Models\Department;
 
-class BrandSearch extends Component
+class DepartmentSearch extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -36,7 +36,7 @@ class BrandSearch extends Component
         }*/
         $this->orgsParent="";
         
-        $brands = Brand::when($this->descripcion, function ($query) {
+        $departments = Department::when($this->descripcion, function ($query) {
             $query->where('descripcion', 'ILIKE', "%$this->descripcion%" );
         }, function ($query) {
             $query->where(function ($query) {
@@ -46,9 +46,9 @@ class BrandSearch extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })*/->paginate(20); // Obtener todos los brinksend de la tabla
+        })*/->paginate(20); // Obtener todos los department de la tabla
 
-        return view('livewire.brandsearch', compact('brands'));
+        return view('livewire.departmentsearch', compact('departments'));
     }
 
 }

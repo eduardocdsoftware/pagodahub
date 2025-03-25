@@ -17,6 +17,108 @@
     </div>
     <div class="p-5 m-0 border-0 bd-example">
 
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title"> <svg fill="#000000" height="37" width="37" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style> .cls-1 { fill: none; } </style> </defs> <rect x="8" y="14" width="6" height="2"></rect> <rect x="8" y="6" width="12" height="2"></rect> <rect x="8" y="10" width="12" height="2"></rect> <rect x="8" y="24" width="6" height="2"></rect> <path d="M30,24V22H27.8989a4.9678,4.9678,0,0,0-.7319-1.7529l1.49-1.49-1.414-1.414-1.49,1.49A4.9678,4.9678,0,0,0,24,18.1011V16H22v2.1011a4.9678,4.9678,0,0,0-1.7529.7319l-1.49-1.49-1.414,1.414,1.49,1.49A4.9678,4.9678,0,0,0,18.1011,22H16v2h2.1011a4.9678,4.9678,0,0,0,.7319,1.7529l-1.49,1.49,1.414,1.414,1.49-1.49A4.9678,4.9678,0,0,0,22,27.8989V30h2V27.8989a4.9678,4.9678,0,0,0,1.7529-.7319l1.49,1.49,1.414-1.414-1.49-1.49A4.9678,4.9678,0,0,0,27.8989,24Zm-7,2a3,3,0,1,1,3-3A3.0033,3.0033,0,0,1,23,26Z"></path> <path d="M14,30H6a2.0021,2.0021,0,0,1-2-2V4A2.0021,2.0021,0,0,1,6,2H22a2.0021,2.0021,0,0,1,2,2V14H22V4H6V28h8Z"></path> <rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32" height="32"></rect> </g></svg> Mantenimiento</h1>
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100 border border-5 border-dark-subtle">
+                            <form name="product" id="product" method="get"
+                                action="{{ route('product') }}">
+                                @csrf
+                                <center>
+                                    <button type="submit" class="btn btn-outline">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Productos</h5>
+                                            <p class="card-text">Permite gestionar los productos</p>
+                                        </div>
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div> 
+                    <!--<div class="col">
+                        <div class="card h-100 border border-5 border-dark-subtle">
+                            <form name="brand" id="brand" method="get"
+                                action="{{ route('brand') }}">
+                                @csrf
+                                <center>
+                                    <button type="submit" class="btn btn-outline">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Marcas</h5>
+                                            <p class="card-text">Permite gestionar las marcas</p>
+                                        </div>
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>--> 
+                    <!--<div class="col">
+                        <div class="card h-100 border border-5 border-dark-subtle">
+                            <form name="category" id="category" method="get"
+                                action="{{ route('category') }}">
+                                @csrf
+                                <center>
+                                    <button type="button" class="btn btn-outline">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Categorías</h5>
+                                            <p class="card-text">Permite gestionar las categorías</p>
+                                        </div>
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>--> 
+                    <div class="col">
+                        <div class="card h-100 border border-5 border-dark-subtle">
+                            <form name="department" id="department" method="get"
+                                action="{{ route('department') }}">
+                                @csrf
+                                <center>
+                                    <button type="submit" class="btn btn-outline">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Departamentos</h5>
+                                            <p class="card-text">Permite gestionar los departamentos</p>
+                                        </div>
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title"> <svg fill="#000000" height="37" width="37" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.4 488.4" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"></path> </g> </g> </g></svg> Buscador</h1>
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100 border border-5 border-dark-subtle">
+                            <form name="product_filter" id="product_filter" method="get"
+                                action="{{ route('product.filter') }}">
+                                @csrf
+                                <center>
+                                    <button type="submit" class="btn btn-outline">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Buscador de productos</h5>
+                                            <p class="card-text">Permite consultar los productos</p>
+                                        </div>
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+        <br>
+
         {{-- Close Cash --}}
         @foreach ($permisos2->records as $user)
             @if (isset($user->PAGODAHUB_closecash))

@@ -191,13 +191,21 @@ Route::middleware(['auth', 'user.data'])->group(function () {
     Route::get('/brand/edit/{id}', [App\Http\Controllers\BrandController::class, 'edit'])->name('brand.edit');
     Route::post('/brand/edit', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
 
-    //rutas departamnto
+    //rutas categorias
     Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
     Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
     Route::delete('category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
     Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
     Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/edit', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+
+    //rutas departamnto
+    Route::get('/department', [App\Http\Controllers\DepartmentController::class, 'index'])->name('department');
+    Route::post('/department', [App\Http\Controllers\DepartmentController::class, 'store'])->name('department.store');
+    Route::delete('department/{id}', [App\Http\Controllers\DepartmentController::class, 'destroy'])->name('department.delete');
+    Route::get('/department/create', [App\Http\Controllers\DepartmentController::class, 'create'])->name('department.create');
+    Route::get('/department/edit/{id}', [App\Http\Controllers\DepartmentController::class, 'edit'])->name('department.edit');
+    Route::post('/department/edit', [App\Http\Controllers\DepartmentController::class, 'update'])->name('department.update');
 
 });
 Route::get('/firma1', function () {

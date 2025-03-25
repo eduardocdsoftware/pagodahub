@@ -14,7 +14,8 @@ class Product extends Model
 
     protected $fillable = [
         'id_category',
-        'id_brand'
+        'id_brand',
+        'id_department'
     ];  
 
     public function brand(): HasOne
@@ -25,6 +26,11 @@ class Product extends Model
     public function category(): HasOne
     {
         return $this->hasOne(Category::class, 'id', 'id_category');
+    }
+
+    public function department(): HasOne
+    {
+        return $this->hasOne(Department::class, 'id', 'id_department');
     }
 
 }

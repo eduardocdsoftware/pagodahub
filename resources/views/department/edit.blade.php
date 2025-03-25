@@ -22,41 +22,25 @@
                  
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h4>Marca</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('brand') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                        <div class="col-md-12 d-flex justify-content-between">
+                            <h4>Departmento</h4>
+                            <div>
+                                <a href="{{ route('department') }}" class="btn btn-primary font-weight-bold">Volver</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Formulario para envio-->
-                    <form name="provider" id="provider" method="post" action="{{route( 'brand.store' )}}">
-                        
+                    <form name="provider" id="provider" method="post" action="{{route( 'department.update' )}}">
+                        <input type="hidden" name="id" value="{{$department->id}}">
                         <div class="col-md-6 mb-3">
-                            <label for="entrega">Nombre de la Marca </label>
-                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" required>
-                        </div>  
-                        <!--<div class="col-md-6 mb-3">
-                            <p for="cars" class="card-text">Sucursal</p>
-                            <select class="form-control" name="AD_Org_ID" id="AD_Org_ID">
-                                @if (isset($orgs))
-                                    @if ($orgs)
-                                        @foreach ($orgs as $org)
-                                            @if($org->id!=0)
-                                                <option value="{{ $org->Name }}">{{ $org->Name }}</option>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endif
-                            </select>
-                        </div> -->                     
+                            <label for="descripcion">Nombre de Departmento </label>
+                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{$department->descripcion}}" required>
+                        </div>                   
                         <div class="form-group w-auto">
                             @csrf
-                            <button class=" w-100 btn btn-outline-secondary m-0" type="button" id="button-addon2" onclick="enviarFormulario()">Crear registro</button>
+                            <button class=" w-100 btn btn-outline-secondary m-0" type="button" id="button-addon2" onclick="enviarFormulario()">Actualizar</button>
                         </div>
                         
                     </form>
