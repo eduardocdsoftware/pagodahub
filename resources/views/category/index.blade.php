@@ -12,11 +12,9 @@
 	        <div class="card">
 	            <div class="card-header">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h4>Lista de categorias</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex justify-content-end">
+                        <div class="col-md-12 d-flex justify-content-between">
+                            <h4>Lista de Categorias</h4>
+                            <div>
                                 <a href="{{ route('category.create') }}" class="btn btn-primary font-weight-bold">Crear registro</a>
                             </div>
                         </div>
