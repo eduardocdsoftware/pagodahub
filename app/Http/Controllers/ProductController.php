@@ -145,7 +145,7 @@ class ProductController extends Controller
     {
         $Product = new Product;
         $Product->name=$request->nombre;  
-        //$Product->id_brand=$request->id_brand;  
+        $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;   
         $Product->presentacion=$request->presentacion;  
         //$Product->peso_volumen=$request->peso_volumen;  
@@ -271,12 +271,13 @@ class ProductController extends Controller
              } catch (FileNotFoundException $e) {
 
              }
+
+             $Product->base64_img=$nombre;
         }
 
         $Product->name=$request->nombre; 
-        //$Product->id_brand=$request->id_brand;  
-        $Product->id_department=$request->id_department;  
-        $Product->base64_img=$nombre;  
+        $Product->id_brand=$request->id_brand;  
+        $Product->id_department=$request->id_department;    
         $Product->presentacion=$request->presentacion;  
         //$Product->peso_volumen=$request->peso_volumen;  
         $Product->codigo_barra=$request->codigo_barra;

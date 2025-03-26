@@ -61,7 +61,7 @@ class ProductSearch extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })*/->orderBy('name', 'ASC')->paginate(20); // Obtener todos los brinksend de la tabla
+        })*/->orderBy('id', 'DESC')->paginate(20); // Obtener todos los brinksend de la tabla
 
         $brands = Brand::all();
         $departments = Department::all();

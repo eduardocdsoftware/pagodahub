@@ -58,7 +58,7 @@
                                         @endif
                                     </select>
                                 </div>
-                                <!--<div class="col-md-6 mb-3 w-auto">
+                                <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
                                     <select class="form-control" name="id_brand" id="id_brand">
                                         <option value=""></option>
@@ -70,7 +70,7 @@
                                             @endforeach
                                         @endif
                                     </select>
-                                </div>-->
+                                </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
                                     <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion" value="{{$product->presentacion}}">

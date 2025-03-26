@@ -370,21 +370,21 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
-                                <a class="dropdown-item" href="../product">Productos</a>
+                                <a class="dropdown-item" href="{{ route('product') }}">Productos</a>
                             </li>
-                            <!--<li>
-                                <a class="dropdown-item" href="../brand">Marcas</a>
-                            </li>-->
+                            <li>
+                                <a class="dropdown-item" href="{{ route('brand') }}">Marcas</a>
+                            </li>
                             <!--<li>
                                 <a class="dropdown-item" href="../category">Categorías</a>
                             </li>-->
                             <li>
-                                <a class="dropdown-item" href="../department">Departamentos</a>
+                                <a class="dropdown-item" href="{{ route('department') }}">Departamentos</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../product/filter">Buscador de productos</a>
+                        <a class="nav-link" href="{{ route('product.filter') }}">Buscador de productos</a>
                     </li>
 
                 </ul>
