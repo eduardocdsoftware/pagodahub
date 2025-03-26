@@ -41,7 +41,7 @@ class DepartmentSearch extends Component
         }, function ($query) {
             $query->where(function ($query) {
             });
-        })->orderBy('descripcion', 'ASC')/*->when($this->orgsParent, function ($query) {
+        })->orderBy('id', 'DESC')/*->when($this->orgsParent, function ($query) {
             $query->where('sucursal', 'like', "%$this->orgsParent%" );
         }, function ($query) {
             $query->where(function ($query) {
