@@ -55,19 +55,19 @@
                 <tr>
                     
                     <td>
-                        {{ $data->name }}
+                        {{ strtoupper($data->name) }}
                     </td>
                     <td>
-                        {{ $data->department->descripcion??'' }} 
+                        {{ strtoupper($data->department->descripcion??'') }} 
                     </td>
                     <!--<td>
                         {{ $data->brand->descripcion??'' }} 
                     </td>-->
                     <td>
-                        {{ $data->presentacion??'' }} 
+                        {{ strtoupper($data->presentacion??'') }} 
                     </td>
                     <td>
-                        {{ $data->codigo_barra }} 
+                        {{ strtoupper($data->codigo_barra) }} 
                     </td>
                     <td style="width:20% !important;">
                         <a href="{{ route('product.edit', $data->id) }}" class="btn btn-warning btn-block my-1" style="width: 100% !important;">

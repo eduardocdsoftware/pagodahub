@@ -144,12 +144,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $Product = new Product;
-        $Product->name=$request->nombre;  
+        $Product->name= strtoupper($request->nombre);
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;   
-        $Product->presentacion=$request->presentacion;  
+        $Product->presentacion= strtoupper($request->presentacion);  
         //$Product->peso_volumen=$request->peso_volumen;  
-        $Product->codigo_barra=$request->codigo_barra;   
+        $Product->codigo_barra= strtoupper($request->codigo_barra);   
         $Product->price=$request->precio; 
 
         $nombre = '';
@@ -275,12 +275,12 @@ class ProductController extends Controller
              $Product->base64_img=$nombre;
         }
 
-        $Product->name=$request->nombre; 
+        $Product->name= strtoupper($request->nombre); 
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;    
-        $Product->presentacion=$request->presentacion;  
+        $Product->presentacion=strtoupper($request->presentacion);  
         //$Product->peso_volumen=$request->peso_volumen;  
-        $Product->codigo_barra=$request->codigo_barra;
+        $Product->codigo_barra= strtoupper($request->codigo_barra); 
         $Product->price=$request->precio; 
         $Product->save();
         return back()->with('mensaje', 'Producto ha sido modificado exitosamente');

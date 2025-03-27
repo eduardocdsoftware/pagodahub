@@ -20,7 +20,7 @@
             @foreach ($brands as $data)
                 <tr>
                     <td>
-                        {{ $data->descripcion }} 
+                        {{ strtoupper($data->descripcion) }} 
                     </td>
                     <td style="width:20% !important;">
                         <a href="{{ route('brand.edit', $data->id) }}" class="btn btn-warning btn-block my-1" style="width: 100% !important;">

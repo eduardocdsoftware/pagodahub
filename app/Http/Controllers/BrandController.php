@@ -138,7 +138,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $Brand = new Brand;
-        $Brand->descripcion=$request->descripcion;       
+        $Brand->descripcion= strtoupper($request->descripcion);       
         $Brand->save();
         return redirect()->back()->with('mensaje', 'Marca ha sido creado exitosamente');
 
@@ -224,7 +224,7 @@ class BrandController extends Controller
     public function update(Request $request)
     {
         $Brand = Brand::find($request->id);
-        $Brand->descripcion = $request->descripcion;
+        $Brand->descripcion = strtoupper($request->descripcion); 
         $Brand->save();
         return back()->with('mensaje', 'Marca ha sido modificada exitosamente');
 

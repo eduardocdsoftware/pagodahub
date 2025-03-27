@@ -138,7 +138,7 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $Department = new Department;
-        $Department->descripcion=$request->descripcion; 
+        $Department->descripcion= strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID;        
         $Department->save();
         return redirect()->back()->with('mensaje', 'Departmento ha sido creado exitosamente');
@@ -225,7 +225,7 @@ class DepartmentController extends Controller
     public function update(Request $request)
     {
         $Department = Department::find($request->id);
-        $Department->descripcion = $request->descripcion;
+        $Department->descripcion = strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID; 
         $Department->save();
         return back()->with('mensaje', 'Departmento ha sido modificado exitosamente');
