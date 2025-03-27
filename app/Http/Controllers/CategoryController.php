@@ -138,7 +138,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $Category = new Category;
-        $Category->descripcion=$request->descripcion; 
+        $Category->descripcion= strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID;        
         $Category->save();
         return redirect()->back()->with('mensaje', 'Categoria ha sido creado exitosamente');
@@ -225,7 +225,7 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         $Category = Category::find($request->id);
-        $Category->descripcion = $request->descripcion;
+        $Category->descripcion = strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID; 
         $Category->save();
         return back()->with('mensaje', 'Categoria ha sido modificada exitosamente');
