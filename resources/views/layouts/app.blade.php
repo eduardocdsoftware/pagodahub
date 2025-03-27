@@ -358,34 +358,46 @@
                                         </ul>
                                     </li>
                                 @endif
+
+                            @foreach ($permisoA->PAGODAHUB_closecash as $user)
+                                @if ($user->Name == 'maintenance')
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Mantenimiento
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('product') }}">Productos</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('brand') }}">Marcas</a>
+                                            </li>
+                                            <!--<li>
+                                                <a class="dropdown-item" href="../category">Categorías</a>
+                                            </li>-->
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('department') }}">Departamentos</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endforeach  
+
+                            @foreach ($permisoA->PAGODAHUB_closecash as $user)
+                                @if ($user->Name == 'product.search')
+                                    @php
+                                        $hasNoLogout = true;
+                                    @endphp
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('product.filter') }}">Buscador de productos</a>
+                                    </li>
+                                @endif
+                            @endforeach   
                             @break
                         @endif
                     @endforeach
                     @endauth
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Mantenimiento
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('product') }}">Productos</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('brand') }}">Marcas</a>
-                            </li>
-                            <!--<li>
-                                <a class="dropdown-item" href="../category">Categorías</a>
-                            </li>-->
-                            <li>
-                                <a class="dropdown-item" href="{{ route('department') }}">Departamentos</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('product.filter') }}">Buscador de productos</a>
-                    </li>
 
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -409,18 +421,31 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Cerrar Sesión') }}
-                                </a>
+                            @php
+                                $hasNoLogout = false;
+                            @endphp
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                            @foreach ($permisoA->PAGODAHUB_closecash as $user)
+                                @if ($user->Name == 'no.logout')
+                                    @php
+                                        $hasNoLogout = true;
+                                    @endphp
+                                @endif
+                            @endforeach 
 
+                            @if (!$hasNoLogout)
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar Sesión') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            @endif
                         </li>
                     @endguest
                 </ul>
