@@ -137,6 +137,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'descripcion' => 'required'
+        ]);
+
         $Department = new Department;
         $Department->descripcion= strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID;        
@@ -224,6 +229,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request)
     {
+
+        $validated = $request->validate([
+            'descripcion' => 'required'
+        ]);
+        
         $Department = Department::find($request->id);
         $Department->descripcion = strtoupper($request->descripcion); 
         //$Department->sucursal=$request->AD_Org_ID; 

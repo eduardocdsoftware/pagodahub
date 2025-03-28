@@ -40,6 +40,9 @@
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="recibe">Nombre del Producto</label>
                                     <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" value="{{$product->name}}" required>
+                                    @error('nombre')
+                                        <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                                    @enderror()
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Precio </label>
@@ -57,6 +60,9 @@
                                             @endforeach
                                         @endif
                                     </select>
+                                    @error('id_department')
+                                        <div class="alert alert-danger mt-1 py-2">El campo departamento es obligatorio</div>
+                                    @enderror()
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
@@ -74,6 +80,9 @@
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
                                     <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion" value="{{$product->presentacion}}">
+                                    @error('presentacion')
+                                        <div class="alert alert-danger mt-1 py-2">El campo presentación es obligatorio</div>
+                                    @enderror()
                                 </div> 
                                 <!--<div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Peso/Volumen </label>
@@ -82,7 +91,17 @@
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Código de Barra </label>
                                     <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra" value="{{$product->codigo_barra}}">
-                                </div> 
+                                    @error('codigo_barra')
+                                        <div class="alert alert-danger mt-1 py-2">El campo código de barra es obligatorio</div>
+                                    @enderror()
+                                </div>
+                                <div class="col-md-6 mb-3 w-auto">
+                                    @php
+                                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                                    @endphp
+
+                                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}">
+                                </div>
                             </div> 
                             <div class="col-md-6 mb-3">
                                 <img id="upload_preview" name="upload_preview" style="width: -webkit-fill-available; height: 400px;" src="{{ asset('storage/imgproduct/'.( $product->base64_img ? $product->base64_img : 'img.png' ) ) }}"/>

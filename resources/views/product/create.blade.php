@@ -40,11 +40,14 @@
                             <div class="col-md-6 mb-3"> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="recibe">Nombre del Producto </label>
-                                    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
+                                    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                                    @error('nombre')
+                                        <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                                    @enderror()
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Precio </label>
-                                    <input type="text" class="form-control" id="precio" name="precio" required>
+                                    <input type="text" class="form-control" id="precio" name="precio" value="{{ old('precio') }}" required>
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Departamento</p>
@@ -53,11 +56,14 @@
                                         @if (isset($departments))
                                             @foreach ($departments as $department)
                                                 @if($department->id!=0)
-                                                    <option value="{{ $department->id }}">{{ $department->descripcion }}</option>
+                                                    <option value="{{ $department->id }}" {{ old('id_department') == $department->id ? 'selected' : '' }}>{{ $department->descripcion }}</option>
                                                 @endif
                                             @endforeach
                                         @endif
                                     </select>
+                                    @error('id_department')
+                                        <div class="alert alert-danger mt-1 py-2">El campo departamento es obligatorio</div>
+                                    @enderror()
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
@@ -66,7 +72,7 @@
                                         @if (isset($brands))
                                             @foreach ($brands as $brand)
                                                 @if($brand->id!=0)
-                                                    <option value="{{ $brand->id }}">{{ $brand->descripcion }}</option>
+                                                    <option value="{{ $brand->id }}" {{ old('id_brand') == $brand->id ? 'selected' : '' }}>{{ $brand->descripcion }}</option>
                                                 @endif
                                             @endforeach
                                         @endif
@@ -74,7 +80,10 @@
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
-                                    <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion">
+                                    <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion" value="{{ old('presentacion') }}">
+                                    @error('presentacion')
+                                        <div class="alert alert-danger mt-1 py-2">El campo presentación es obligatorio</div>
+                                    @enderror()
                                 </div> 
                                 <!--<div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Peso/Volumen </label>
@@ -82,7 +91,10 @@
                                 </div>-->
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Código de Barra </label>
-                                    <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra">
+                                    <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra" value="{{ old('codigo_barra') }}">
+                                    @error('codigo_barra')
+                                        <div class="alert alert-danger mt-1 py-2">El campo código de barra es obligatorio</div>
+                                    @enderror()
                                 </div> 
                                 <!--<div class="col-md-6 mb-3">
                                     <p for="cars" class="card-text">Sucursal</p>

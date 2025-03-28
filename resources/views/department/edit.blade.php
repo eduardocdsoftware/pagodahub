@@ -37,6 +37,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="descripcion">Nombre de Departmento </label>
                             <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{$department->descripcion}}" required>
+                            @error('descripcion')
+                                <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                            @enderror()
                         </div>                   
                         <div class="form-group w-auto">
                             @csrf
