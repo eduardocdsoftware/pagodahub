@@ -137,6 +137,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'descripcion' => 'required'
+        ]);
+
         $Brand = new Brand;
         $Brand->descripcion= strtoupper($request->descripcion);       
         $Brand->save();
@@ -223,6 +228,11 @@ class BrandController extends Controller
      */
     public function update(Request $request)
     {
+
+        $validated = $request->validate([
+            'descripcion' => 'required'
+        ]);
+        
         $Brand = Brand::find($request->id);
         $Brand->descripcion = strtoupper($request->descripcion); 
         $Brand->save();

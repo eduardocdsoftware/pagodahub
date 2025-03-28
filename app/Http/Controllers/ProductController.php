@@ -143,6 +143,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'id_department' => 'required',
+            'presentacion' => 'required',
+            'codigo_barra' => 'required'
+        ]);
+
         $Product = new Product;
         $Product->name= strtoupper($request->nombre);
         $Product->id_brand=$request->id_brand;  
@@ -256,6 +264,14 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
+
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'id_department' => 'required',
+            'presentacion' => 'required',
+            'codigo_barra' => 'required'
+        ]);
+        
         $Product = Product::find($request->id);
 
         $nombre = '';

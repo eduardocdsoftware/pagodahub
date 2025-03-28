@@ -27,7 +27,7 @@
                             <div>
                                 <a href="{{ route('brand') }}" class="btn btn-primary font-weight-bold">Volver</a>
                             </div>
-                        </div>>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -38,6 +38,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="entrega">Nombre de la Marca </label>
                             <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{$brand->descripcion}}" required>
+                            @error('descripcion')
+                                <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                            @enderror()
                         </div>                      
                         <div class="form-group w-auto">
                             @csrf

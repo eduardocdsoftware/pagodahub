@@ -48,6 +48,13 @@
                                         @endif
                                     </span>
                                 </h3>
+                                <div class="w-auto">
+                                    @php
+                                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                                    @endphp
+
+                                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}">
+                                </div>
                               </div>
                             </div>
                             <div class="col-md-6">

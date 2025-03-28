@@ -38,7 +38,10 @@
                         
                         <div class="col-md-6 mb-3">
                             <label for="descripcion">Nombre de Departmento </label>
-                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" required>
+                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{ old('descripcion') }}" required>
+                            @error('descripcion')
+                                <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                            @enderror()
                         </div>  
                         <!--<div class="col-md-6 mb-3">
                             <p for="cars" class="card-text">Sucursal</p>
