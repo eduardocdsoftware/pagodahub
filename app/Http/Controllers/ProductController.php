@@ -156,7 +156,7 @@ class ProductController extends Controller
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;   
         $Product->presentacion= strtoupper($request->presentacion);  
-        //$Product->peso_volumen=$request->peso_volumen;  
+        $Product->peso_volumen= strtoupper($request->peso_volumen);
         $Product->codigo_barra= strtoupper($request->codigo_barra);   
         $Product->price=$request->precio; 
 
@@ -294,8 +294,8 @@ class ProductController extends Controller
         $Product->name= strtoupper($request->nombre); 
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;    
-        $Product->presentacion=strtoupper($request->presentacion);  
-        //$Product->peso_volumen=$request->peso_volumen;  
+        $Product->presentacion= strtoupper($request->presentacion);  
+        $Product->peso_volumen= strtoupper($request->peso_volumen);   
         $Product->codigo_barra= strtoupper($request->codigo_barra); 
         $Product->price=$request->precio; 
         $Product->save();

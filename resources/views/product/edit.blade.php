@@ -39,18 +39,19 @@
                             <div class="col-md-6 mb-3"> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="recibe">Nombre del Producto</label>
-                                    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" value="{{$product->name}}" required>
+                                    <input type="text" class="form-control text-uppercase required" id="nombre" name="nombre" value="{{$product->name}}">
                                     @error('nombre')
-                                        <div class="alert alert-danger mt-1 py-2">El campo nombre es obligatorio</div>
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo nombre es obligatorio</div>
                                     @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="nombre">El campo nombre es obligatorio</div>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Precio </label>
-                                    <input type="text" class="form-control" id="precio" name="precio" value="{{$product->price}}" required>
+                                    <input type="text" class="form-control" id="precio" name="precio" value="{{$product->price}}">
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Departamento</p>
-                                    <select class="form-control" name="id_department" id="id_department">
+                                    <select class="form-control required" name="id_department" id="id_department">
                                         <option value=""></option>
                                         @if (isset($departments))
                                             @foreach ($departments as $department)
@@ -61,8 +62,9 @@
                                         @endif
                                     </select>
                                     @error('id_department')
-                                        <div class="alert alert-danger mt-1 py-2">El campo departamento es obligatorio</div>
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo departamento es obligatorio</div>
                                     @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="id_department">El campo departamento es obligatorio</div>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
@@ -79,33 +81,42 @@
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
-                                    <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion" value="{{$product->presentacion}}">
+                                    <input type="text" class="form-control text-uppercase required" id="presentacion" name="presentacion" value="{{$product->presentacion}}">
                                     @error('presentacion')
-                                        <div class="alert alert-danger mt-1 py-2">El campo presentación es obligatorio</div>
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo presentación es obligatorio</div>
                                     @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="presentacion">El campo presentación es obligatorio</div>
                                 </div> 
-                                <!--<div class="col-md-6 mb-3 w-auto">
+                                <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Peso/Volumen </label>
                                     <input type="text" class="form-control text-uppercase" id="peso_volumen" name="peso_volumen" value="{{$product->peso_volumen}}">
-                                </div>-->
+                                </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Código de Barra </label>
-                                    <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra" value="{{$product->codigo_barra}}">
+                                    <input type="text" class="form-control text-uppercase required" id="codigo_barra" name="codigo_barra" value="{{$product->codigo_barra}}">
                                     @error('codigo_barra')
-                                        <div class="alert alert-danger mt-1 py-2">El campo código de barra es obligatorio</div>
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo código de barra es obligatorio</div>
                                     @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="codigo_barra">El campo código de barra es obligatorio</div>
                                 </div>
-                                <div class="col-md-6 mb-3 w-auto">
-                                    @php
-                                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-                                    @endphp
+                                @if (!empty($product->codigo_barra))
+                                    <div class="col-md-6 mb-3 w-auto">
+                                        @php
+                                            $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                                        @endphp
 
-                                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}">
-                                </div>
+                                        <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($product->codigo_barra, $generatorPNG::TYPE_CODE_128)) }}">
+                                    </div>
+                                @endif
                             </div> 
                             <div class="col-md-6 mb-3">
                                 <img id="upload_preview" name="upload_preview" style="width: -webkit-fill-available; height: 400px;" src="{{ asset('storage/imgproduct/'.( $product->base64_img ? $product->base64_img : 'img.png' ) ) }}"/>
                                 <input id="upload_image" type="file" name="upload_image" onchange="PreviewImage();" class="mt-3" accept="image/*"/>
+                                <input type="hidden" id="image" name="image" class="required" value="{{$product->base64_img}}">
+                                @error('upload_image')
+                                    <div class="alert alert-danger mt-1 py-2 show">El campo imagen es obligatorio</div>
+                                @enderror()
+                                <div class="alert alert-danger mt-1 py-2 error d-none" field="image">El campo imagen es obligatorio</div>
                             </div>
                         </div>                   
                         <div class="form-group w-auto">
@@ -127,6 +138,23 @@
     function enviarFormulario() {
         // Aquí puedes realizar cualquier otra validación antes de enviar el formulario
 
+        let error = false;
+        $('div').find('div.show').addClass('d-none');
+        $('div').find('div.show').removeClass('show');
+
+        $('.required').each(function(){
+
+            if ($(this).val() == '') {
+
+                error = true;
+                $("div[field='" + $(this).attr('id') + "']").removeClass('d-none').addClass('show');
+
+            }
+
+        });
+
+        if (error) {return;}
+
         $('#confirmModal').modal('hide');
         $('.container-form').addClass('d-none');
         $('.container-loader').removeClass('d-none');
@@ -141,6 +169,7 @@
 
         oFReader.onload = function (oFREvent) {
             document.getElementById("upload_preview").src = oFREvent.target.result;
+            document.getElementById("image").value = oFREvent.target.result;
         };
     };
 
