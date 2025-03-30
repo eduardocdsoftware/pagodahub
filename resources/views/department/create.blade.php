@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('department') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('department') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Volver</a>
                             </div>
                         </div>
                     </div>
@@ -71,6 +71,11 @@
     </div>
     
 </div>
+<style>
+    .font-weight-bold{
+        font-weight: bold;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     

@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('product.filter') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('product.filter', 'session') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Volver</a>
                             </div>
                         </div>
                     </div>
@@ -48,13 +48,15 @@
                                         @endif
                                     </span>
                                 </h3>
-                                <div class="w-auto">
-                                    @php
-                                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-                                    @endphp
+                                @if (!empty($product->codigo_barra))
+                                    <div class="w-auto">
+                                        @php
+                                            $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                                        @endphp
 
-                                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}">
-                                </div>
+                                        <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($product->codigo_barra, $generatorPNG::TYPE_CODE_128)) }}">
+                                    </div>
+                                @endif
                               </div>
                             </div>
                             <div class="col-md-6">
@@ -62,13 +64,10 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
+        </div>
     </div>
-    </div>
-    
 </div>
 <style>
     .font-weight-bold{

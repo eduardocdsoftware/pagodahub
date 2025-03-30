@@ -22,10 +22,14 @@ class ProductFilter extends Component
     }
     public $orgsParent; // Propiedad para almacenar el valor de 'tipo' desde el primer return
 
-    public function mount($orgs)
+    public function mount($orgs, $session)
     {
         $org=session()->put('misDatos',$orgs);
         $this->orgsParent = $orgs; // Almacena el valor de 'tipo' desde el primer return
+
+        $this->nombre        = $session['nombre'];
+        $this->codigo_barra  = $session['codigo_barra'];
+        $this->id_department = $session['id_department'];
     }
     public function setDepartment($id)
     {
@@ -70,6 +74,10 @@ class ProductFilter extends Component
         //$brands = Brand::all();
         $departments = Department::all();
         $parameters = collect(['nombre' => $this->nombre == '' ? null : $this->nombre, 'codigo_barra' => $this->codigo_barra == '' ? null : $this->codigo_barra, 'id_department' => $this->id_department == '' ? null : $this->id_department]);
+
+        session()->put('nombre',$this->nombre);
+        session()->put('codigo_barra',$this->codigo_barra);
+        session()->put('id_department',$this->id_department);
 
         return view('livewire.productfilter', compact('products','departments','parameters'));
     }

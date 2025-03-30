@@ -25,7 +25,7 @@
                         <div class="col-md-12 d-flex justify-content-between">
                             <h4>Producto</h4>
                             <div>
-                                <a href="{{ route('product') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('product') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Volver</a>
                             </div>
                         </div>
                     </div>
@@ -132,6 +132,11 @@
     </div>
     
 </div>
+<style>
+    .font-weight-bold{
+        font-weight: bold;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     

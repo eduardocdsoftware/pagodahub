@@ -15,7 +15,7 @@
                         <div class="col-md-12 d-flex justify-content-between">
                             <h4>Lista de Marcas</h4>
                             <div>
-                                <a href="{{ route('brand.create') }}" class="btn btn-primary font-weight-bold">Crear registro</a>
+                                <a href="{{ route('brand.create') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Crear registro</a>
                             </div>
                         </div>
                     </div>
@@ -87,6 +87,9 @@
     }
     .divider {
     width: 15px;
+    }
+    .font-weight-bold{
+        font-weight: bold;
     }
 </style>
 @endsection

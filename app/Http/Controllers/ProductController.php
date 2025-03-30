@@ -314,7 +314,7 @@ class ProductController extends Controller
 
     }
 
-    public function filter()
+    public function filter($filterSession = null)
     {   
         $APIController = new APIController();
         ////////////
@@ -370,9 +370,21 @@ class ProductController extends Controller
                     }
             }
         }
+
+        if (!isset($filterSession)) {
+            session()->put('id_department', null);
+            session()->put('nombre', null);
+            session()->put('codigo_barra', null);
+        }
+
         session()->put('misDatos', $orgs);
         //return view('tdc', ['orgs' => $orgs,  'permisos' => $user]);
-        return view('product.filter', ['orgs' => $orgs,  'permisos' => $user]);
+
+        $session['id_department'] = session()->get('id_department');
+        $session['nombre']        = session()->get('nombre');
+        $session['codigo_barra']  = session()->get('codigo_barra');
+
+        return view('product.filter', ['orgs' => $orgs,  'permisos' => $user,  'session' => $session]);
     }
 
     /**
