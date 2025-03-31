@@ -25,9 +25,9 @@
                         <div class="col-md-12 d-flex justify-content-between">
                             <h4>Marca</h4>
                             <div>
-                                <a href="{{ route('brand') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('brand') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Volver</a>
                             </div>
-                        </div>>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -37,7 +37,11 @@
     
                         <div class="col-md-6 mb-3">
                             <label for="entrega">Nombre de la Marca </label>
-                            <input type="text" class="form-control text-uppercase" id="descripcion" name="descripcion" value="{{$brand->descripcion}}" required>
+                            <input type="text" class="form-control text-uppercase required" id="descripcion" name="descripcion" value="{{$brand->descripcion}}">
+                            @error('descripcion')
+                                <div class="alert alert-danger mt-1 py-2 show">El campo nombre es obligatorio</div>
+                            @enderror()
+                            <div class="alert alert-danger mt-1 py-2 error d-none" field="descripcion">El campo nombre es obligatorio</div>
                         </div>                      
                         <div class="form-group w-auto">
                             @csrf
@@ -52,11 +56,33 @@
     </div>
     
 </div>
+<style>
+    .font-weight-bold{
+        font-weight: bold;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     
     function enviarFormulario() {
         // Aquí puedes realizar cualquier otra validación antes de enviar el formulario
+
+        let error = false;
+        $('div').find('div.show').addClass('d-none');
+        $('div').find('div.show').removeClass('show');
+
+        $('.required').each(function(){
+
+            if ($(this).val() == '') {
+
+                error = true;
+                $("div[field='" + $(this).attr('id') + "']").removeClass('d-none').addClass('show');
+
+            }
+
+        });
+
+        if (error) {return;}
 
         $('#confirmModal').modal('hide');
         $('.container-form').addClass('d-none');

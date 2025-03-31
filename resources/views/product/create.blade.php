@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('product') }}" class="btn btn-primary font-weight-bold">Volver</a>
+                                <a href="{{ route('product') }}" class="btn btn-primary font-weight-bold text-uppercase" style="font-size: 0.8rem !important;">Volver</a>
                             </div>
                         </div>
                     </div>
@@ -40,24 +40,32 @@
                             <div class="col-md-6 mb-3"> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="recibe">Nombre del Producto </label>
-                                    <input type="text" class="form-control text-uppercase" id="nombre" name="nombre" required>
+                                    <input type="text" class="form-control text-uppercase required" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                                    @error('nombre')
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo nombre es obligatorio</div>
+                                    @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="nombre">El campo nombre es obligatorio</div>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Precio </label>
-                                    <input type="text" class="form-control" id="precio" name="precio" required>
+                                    <input type="text" class="form-control" id="precio" name="precio" value="{{ old('precio') }}">
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Departamento</p>
-                                    <select class="form-control" name="id_department" id="id_department">
+                                    <select class="form-control required" name="id_department" id="id_department">
                                         <option value=""></option>
                                         @if (isset($departments))
                                             @foreach ($departments as $department)
                                                 @if($department->id!=0)
-                                                    <option value="{{ $department->id }}">{{ $department->descripcion }}</option>
+                                                    <option value="{{ $department->id }}" {{ old('id_department') == $department->id ? 'selected' : '' }}>{{ $department->descripcion }}</option>
                                                 @endif
                                             @endforeach
                                         @endif
                                     </select>
+                                    @error('id_department')
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo departamento es obligatorio</div>
+                                    @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="id_department">El campo departamento es obligatorio</div>
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Marca</p>
@@ -66,7 +74,7 @@
                                         @if (isset($brands))
                                             @foreach ($brands as $brand)
                                                 @if($brand->id!=0)
-                                                    <option value="{{ $brand->id }}">{{ $brand->descripcion }}</option>
+                                                    <option value="{{ $brand->id }}" {{ old('id_brand') == $brand->id ? 'selected' : '' }}>{{ $brand->descripcion }}</option>
                                                 @endif
                                             @endforeach
                                         @endif
@@ -74,15 +82,23 @@
                                 </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Presentación </label>
-                                    <input type="text" class="form-control text-uppercase" id="presentacion" name="presentacion">
+                                    <input type="text" class="form-control text-uppercase required" id="presentacion" name="presentacion" value="{{ old('presentacion') }}">
+                                    @error('presentacion')
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo presentación es obligatorio</div>
+                                    @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="presentacion">El campo presentación es obligatorio</div>
                                 </div> 
-                                <!--<div class="col-md-6 mb-3 w-auto">
+                                <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Peso/Volumen </label>
-                                    <input type="text" class="form-control text-uppercase" id="peso_volumen" name="peso_volumen">
-                                </div>-->
+                                    <input type="text" class="form-control text-uppercase" id="peso_volumen" name="peso_volumen" value="{{ old('codigo_barra') }}">
+                                </div>
                                 <div class="col-md-6 mb-3 w-auto">
                                     <label for="entrega">Código de Barra </label>
-                                    <input type="text" class="form-control text-uppercase" id="codigo_barra" name="codigo_barra">
+                                    <input type="text" class="form-control text-uppercase required" id="codigo_barra" name="codigo_barra" value="{{ old('codigo_barra') }}">
+                                    @error('codigo_barra')
+                                        <div class="alert alert-danger mt-1 py-2 show">El campo código de barra es obligatorio</div>
+                                    @enderror()
+                                    <div class="alert alert-danger mt-1 py-2 error d-none" field="codigo_barra">El campo código de barra es obligatorio</div>
                                 </div> 
                                 <!--<div class="col-md-6 mb-3">
                                     <p for="cars" class="card-text">Sucursal</p>
@@ -101,7 +117,12 @@
                             </div> 
                             <div class="col-md-6 mb-3">
                                 <img id="upload_preview" name="upload_preview" style="width: -webkit-fill-available; height: 400px;" src="{{ asset('storage/imgproduct/img.jpg') }}"/>
-                                <input id="upload_image" type="file" name="upload_image" onchange="PreviewImage();" class="mt-3" accept="image/*"/>
+                                <input id="upload_image" type="file" name="upload_image" onchange="PreviewImage();" class="mt-3 required" accept="image/*"/>
+                                <input type="hidden" id="image" name="image" class="required" value="{{ old('upload_image') }}">
+                                @error('upload_image')
+                                    <div class="alert alert-danger mt-1 py-2 show">El campo imagen es obligatorio</div>
+                                @enderror()
+                                <div class="alert alert-danger mt-1 py-2 error d-none" field="image">El campo imagen es obligatorio</div>
                             </div>   
                         </div>             
                         <div class="form-group w-auto">
@@ -117,11 +138,33 @@
     </div>
     
 </div>
+<style>
+    .font-weight-bold{
+        font-weight: bold;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     
     function enviarFormulario() {
         // Aquí puedes realizar cualquier otra validación antes de enviar el formulario
+
+        let error = false;
+        $('div').find('div.show').addClass('d-none');
+        $('div').find('div.show').removeClass('show');
+
+        $('.required').each(function(){
+
+            if ($(this).val() == '') {
+
+                error = true;
+                $("div[field='" + $(this).attr('id') + "']").removeClass('d-none').addClass('show');
+
+            }
+
+        });
+
+        if (error) {return;}
 
         $('#confirmModal').modal('hide');
         $('.container-form').addClass('d-none');
@@ -137,6 +180,7 @@
 
         oFReader.onload = function (oFREvent) {
             document.getElementById("upload_preview").src = oFREvent.target.result;
+            document.getElementById("image").value = oFREvent.target.result;
         };
     };
 

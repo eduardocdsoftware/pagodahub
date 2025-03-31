@@ -143,12 +143,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'id_department' => 'required',
+            'presentacion' => 'required',
+            'codigo_barra' => 'required'
+        ]);
+
         $Product = new Product;
         $Product->name= strtoupper($request->nombre);
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;   
         $Product->presentacion= strtoupper($request->presentacion);  
-        //$Product->peso_volumen=$request->peso_volumen;  
+        $Product->peso_volumen= strtoupper($request->peso_volumen);
         $Product->codigo_barra= strtoupper($request->codigo_barra);   
         $Product->price=$request->precio; 
 
@@ -256,6 +264,14 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
+
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'id_department' => 'required',
+            'presentacion' => 'required',
+            'codigo_barra' => 'required'
+        ]);
+        
         $Product = Product::find($request->id);
 
         $nombre = '';
@@ -278,8 +294,8 @@ class ProductController extends Controller
         $Product->name= strtoupper($request->nombre); 
         $Product->id_brand=$request->id_brand;  
         $Product->id_department=$request->id_department;    
-        $Product->presentacion=strtoupper($request->presentacion);  
-        //$Product->peso_volumen=$request->peso_volumen;  
+        $Product->presentacion= strtoupper($request->presentacion);  
+        $Product->peso_volumen= strtoupper($request->peso_volumen);   
         $Product->codigo_barra= strtoupper($request->codigo_barra); 
         $Product->price=$request->precio; 
         $Product->save();
@@ -298,7 +314,7 @@ class ProductController extends Controller
 
     }
 
-    public function filter()
+    public function filter($filterSession = null)
     {   
         $APIController = new APIController();
         ////////////
@@ -354,9 +370,21 @@ class ProductController extends Controller
                     }
             }
         }
+
+        if (!isset($filterSession)) {
+            session()->put('id_department', null);
+            session()->put('nombre', null);
+            session()->put('codigo_barra', null);
+        }
+
         session()->put('misDatos', $orgs);
         //return view('tdc', ['orgs' => $orgs,  'permisos' => $user]);
-        return view('product.filter', ['orgs' => $orgs,  'permisos' => $user]);
+
+        $session['id_department'] = session()->get('id_department');
+        $session['nombre']        = session()->get('nombre');
+        $session['codigo_barra']  = session()->get('codigo_barra');
+
+        return view('product.filter', ['orgs' => $orgs,  'permisos' => $user,  'session' => $session]);
     }
 
     /**
