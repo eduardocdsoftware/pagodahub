@@ -49,7 +49,7 @@ class ProductFilter extends Component
         }*/
         $this->orgsParent="";
         
-        $products = Product::when($this->nombre, function ($query) {
+        $products = Product::where('product_search', '=', 'Y')->when($this->nombre, function ($query) {
             $query->where('name', 'ILIKE', "%$this->nombre%" );
         }, function ($query) {
             $query->where(function ($query) {

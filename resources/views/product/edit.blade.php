@@ -50,6 +50,13 @@
                                     <input type="text" class="form-control" id="precio" name="precio" value="{{$product->price}}">
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
+                                    <p for="buscador" class="card-text">Mostrar en Buscador</p>
+                                    <select class="form-control" name="buscador_producto" id="buscador_producto">
+                                        <option value="N" {{ $product->product_search == 'N' ? 'selected' : '' }}>NO</option>
+                                        <option value="Y" {{ $product->product_search == 'Y' ? 'selected' : '' }}>SI</option>
+                                    </select>
+                                </div> 
+                                <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Departamento</p>
                                     <select class="form-control required" name="id_department" id="id_department">
                                         <option value=""></option>

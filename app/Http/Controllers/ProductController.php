@@ -159,6 +159,7 @@ class ProductController extends Controller
         $Product->peso_volumen= strtoupper($request->peso_volumen);
         $Product->codigo_barra= strtoupper($request->codigo_barra);   
         $Product->price=$request->precio; 
+        $Product->product_search=$request->buscador_producto; 
 
         $nombre = '';
         if ($request->hasFile('upload_image')) {
@@ -298,6 +299,7 @@ class ProductController extends Controller
         $Product->peso_volumen= strtoupper($request->peso_volumen);   
         $Product->codigo_barra= strtoupper($request->codigo_barra); 
         $Product->price=$request->precio; 
+        $Product->product_search=$request->buscador_producto; 
         $Product->save();
         return back()->with('mensaje', 'Producto ha sido modificado exitosamente');
 

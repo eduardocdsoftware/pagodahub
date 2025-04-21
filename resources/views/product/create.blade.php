@@ -51,6 +51,12 @@
                                     <input type="text" class="form-control" id="precio" name="precio" value="{{ old('precio') }}">
                                 </div> 
                                 <div class="col-md-6 mb-3 w-auto">
+                                    <p for="buscador" class="card-text">Mostrar en Buscador</p>
+                                    <select class="form-control" name="buscador_producto" id="buscador_producto">
+                                        <option value="Y" selected>SI</option>
+                                    </select>
+                                </div> 
+                                <div class="col-md-6 mb-3 w-auto">
                                     <p for="cars" class="card-text">Departamento</p>
                                     <select class="form-control required" name="id_department" id="id_department">
                                         <option value=""></option>
