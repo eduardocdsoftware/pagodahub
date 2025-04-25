@@ -180,7 +180,7 @@ Route::middleware(['auth', 'user.data'])->group(function () {
     Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
     Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product/edit', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
-    Route::get('/product/filter/{session?}', [App\Http\Controllers\ProductController::class, 'filter'])->name('product.filter');
+    Route::get('/product/product-filter/{session?}', [App\Http\Controllers\ProductController::class, 'filter'])->name('product.filter');
     Route::get('/product/details/{id}', [App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
 
     //rutas marca
