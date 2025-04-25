@@ -71,6 +71,8 @@ class ProductFilter extends Component
             });
         })*/->paginate(20); // Obtener todos los brinksend de la tabla
 
+        $products->withPath(route('product.filter', 'session'));
+
         //$brands = Brand::all();
         $departments = Department::all();
         $parameters = collect(['nombre' => $this->nombre == '' ? null : $this->nombre, 'codigo_barra' => $this->codigo_barra == '' ? null : $this->codigo_barra, 'id_department' => $this->id_department == '' ? null : $this->id_department]);
@@ -78,7 +80,7 @@ class ProductFilter extends Component
         session()->put('nombre',$this->nombre);
         session()->put('codigo_barra',$this->codigo_barra);
         session()->put('id_department',$this->id_department);
-
+        
         return view('livewire.productfilter', compact('products','departments','parameters'));
     }
 
