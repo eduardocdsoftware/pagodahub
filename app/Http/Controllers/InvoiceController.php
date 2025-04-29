@@ -59,8 +59,11 @@ class InvoiceController extends Controller
                     // Segunda solicitud para AD_Org_ID = 1000008
                     $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
 
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
                     // Combinar las respuestas en un único array
-                    $response->records = array_merge($response1->records, $response2->records);
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
                     //tabla rv_gh_org  campo AD_Org_ID
                     // Verifica si la consulta fue exitosa
                     if ($response && isset($response->records[0])) {
@@ -150,8 +153,11 @@ class InvoiceController extends Controller
                     // Segunda solicitud para AD_Org_ID = 1000008
                     $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
 
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
                     // Combinar las respuestas en un único array
-                    $response->records = array_merge($response1->records, $response2->records);
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
                     //tabla rv_gh_org  campo AD_Org_ID
                     // Verifica si la consulta fue exitosa
                     if ($response && isset($response->records[0])) {
@@ -211,8 +217,11 @@ class InvoiceController extends Controller
                     // Segunda solicitud para AD_Org_ID = 1000008
                     $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
 
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
                     // Combinar las respuestas en un único array
-                    $response->records = array_merge($response1->records, $response2->records);
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
                     //tabla rv_gh_org  campo AD_Org_ID
                     // Verifica si la consulta fue exitosa
                     if ($response && isset($response->records[0])) {
@@ -271,8 +280,11 @@ class InvoiceController extends Controller
                     // Segunda solicitud para AD_Org_ID = 1000008
                     $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
 
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
                     // Combinar las respuestas en un único array
-                    $response->records = array_merge($response1->records, $response2->records);
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
                     //tabla rv_gh_org  campo AD_Org_ID
                     // Verifica si la consulta fue exitosa
                     if ($response && isset($response->records[0])) {
@@ -581,8 +593,11 @@ class InvoiceController extends Controller
                     // Segunda solicitud para AD_Org_ID = 1000008
                     $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
 
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
                     // Combinar las respuestas en un único array
-                    $response->records = array_merge($response1->records, $response2->records);
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
                     //tabla rv_gh_org  campo AD_Org_ID
                     // Verifica si la consulta fue exitosa
                     if ($response && isset($response->records[0])) {
