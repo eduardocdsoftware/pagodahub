@@ -774,6 +774,9 @@ class CloseCashController extends Controller
         if ($organizacion == 1000009) {
             $nameorg = "La Doña";
         }
+        if ($organizacion == 1000012) {
+            $nameorg = "Rio Chico";
+        }
         return $pdf->stream("Cierre-" . $nameorg . "-" . $dia . ".pdf");
     }    
 }
