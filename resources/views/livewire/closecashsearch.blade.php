@@ -56,6 +56,9 @@
                         @if ($data->AD_Org_ID == 1000009)
                             La Doña
                         @endif
+                        @if ($data->AD_Org_ID == 1000012)
+                            Rio Chico
+                        @endif
                     </td>
                     <td class="text-end">
                         @php
