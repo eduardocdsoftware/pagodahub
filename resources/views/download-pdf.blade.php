@@ -100,6 +100,9 @@
                         @if ($dataday->AD_Org_ID == 1000009)
                             <h3>Cierre de caja: La Doña {{ $data->DateTrx }}</h3>
                         @endif
+                        @if ($dataday->AD_Org_ID == 1000012)
+                            <h3>Cierre de caja: Rio Chico {{ $data->DateTrx }}</h3>
+                        @endif
                     @endforeach
                 @endif
 
