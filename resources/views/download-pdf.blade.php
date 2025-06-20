@@ -17,6 +17,9 @@
                             @if ($dataday->AD_Org_ID == 1000009)
                                 La Doña {{ $data->DateTrx }}
                             @endif
+                            @if ($dataday->AD_Org_ID == 1000012)
+                                Rio Chico {{ $data->DateTrx }}
+                            @endif
                         @endforeach
                     @endif
                 @endforeach
