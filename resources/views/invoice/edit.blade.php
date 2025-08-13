@@ -9,6 +9,7 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
 @section('content')
+
 <div class="justify-content-center d-none container-loader" style="align-content: center; min-height: 100vh;">
     <div class="d-flex justify-content-center">
         <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
@@ -587,10 +588,103 @@
 
                         }
 
+                        function addFormaPago(add_forma_pago, index){
+     
+                            var unique_id="fija";
+                            var forma_pago;
+
+                            if(index>0){
+                                forma_pago = $("#forma-pago-fija").clone(true).appendTo("#container-forma-pago-multiple");
+                                unique_id = Math.floor(Math.random() * 26) + Date.now();
+
+                                forma_pago.find(".btn-eliminar-forma-pago").removeClass("d-none").attr("unique-id",unique_id);
+                                forma_pago.attr("id","forma-pago-" + unique_id);
+                                forma_pago.addClass("forma-pago-multiple");
+                               
+                            }
+                            else{
+                                forma_pago = $("#forma-pago-fija");  
+                            }
+
+
+                            forma_pago.find(".forma-pago").attr("unique-id", unique_id).val(add_forma_pago).change();
+                            forma_pago.find(".form-check-input").attr("unique-id", unique_id);
+                            forma_pago.find(".form-check-input").prop("checked",false);
+                            forma_pago.find(".fields").css("display", "none");
+                            forma_pago.find(".desc-fields").css("display", "none");
+                            forma_pago.find(".text").val("");
+                            forma_pago.find(".number").val(0);
+                            forma_pago.find("select option:eq(0)").attr("selected","selected");
+                            
+                            $("#forma-pago-" + unique_id).find(".fields").css("display", "none");
+
+
+                            const formasPago = @json(json_decode($invoice->forma_pago_multiple, true));
+                      
+                            switch(add_forma_pago) {
+                                case 'credito':
+
+                                    $("#forma-pago-" + unique_id).find(".credito-fields").css("display", "block");
+                                    $("#forma-pago-" + unique_id).find("#num_comprobante_credito").val(formasPago[index].comprobante);
+                                    $("#forma-pago-" + unique_id).find("#valor_credito").val(formasPago[index].valor);
+                                    $("#forma-pago-" + unique_id).find("#banco_credito").val(formasPago[index].banco);
+                                    $("#forma-pago-" + unique_id).find("#credito_options").val(formasPago[index].credito_options).change();
+
+                                break;
+                                case 'banco':
+
+                                    $("#forma-pago-" + unique_id).find(".banco-fields").css("display", "block");
+
+                                    const bancoOptions = formasPago[index].banco_options;
+
+                                    $.each(bancoOptions, function(i,item){
+
+                                          $("#forma-pago-" + unique_id).find('#banco_'+item.option).prop('checked', true).change();
+
+                                          switch(item.option) {
+                                            case 'loteria':
+                                                $("#forma-pago-" + unique_id).find("#loteria_banco").val(item.valor);
+                                            break;
+                                            case 'efectivo':
+                                                $("#forma-pago-" + unique_id).find("#presupuest_banco").val(item.valor);
+                                            break;
+                                            case 'cheque':
+                                                $("#forma-pago-" + unique_id).find("#cheque_banco").val(item.valor);
+                                                $("#forma-pago-" + unique_id).find("#num_comprobante").val(item.comprobante);
+                                                $("#forma-pago-" + unique_id).find("#banco_banco").val(item.banco);
+                                            break;
+                                            default:
+                                                // code block
+                                        }
+
+                                    });
+
+                                break;
+                                case 'tarjeta_credito':
+
+                                    $("#forma-pago-" + unique_id).find(".tarjeta-fields").css("display", "block");
+
+                                    // Cargar
+                                    $("#forma-pago-" + unique_id).find("#tarjeta").val(formasPago[index].tarjeta);
+                                    $("#forma-pago-" + unique_id).find("#valor_tarjeta").val(formasPago[index].valor);
+
+                                break;
+                                case 'caja':
+
+                                    $("#forma-pago-" + unique_id).find(".caja-fields").css("display", "block");
+                                    $("#forma-pago-" + unique_id).find("#valor_caja").val(formasPago[index].valor);
+
+                                break;
+                                default:
+                                    // code block
+                            }
+
+                        }
+
                         $( document ).ready(function() {
 
                             $(".forma-pago").on("change", function(e) {
-     
+
                                 //const optionsSelected = $('.forma-pago option:selected');
                                 const valueSelectedFormaPago = this.value;
                                 const unique_id = $(this).attr('unique-id');
@@ -643,7 +737,7 @@
                             });
 
                             $(".btn-agregar-forma-pago").on("click", function() {
-
+                              
                                 const forma_pago = $("#forma-pago-fija").clone(true).appendTo("#container-forma-pago-multiple");
                                 const unique_id = Math.floor(Math.random() * 26) + Date.now();
 
@@ -673,6 +767,13 @@
                                     $("#forma-pago-" + unique_id).find("." + descFields + "-desc-fields").css("display", "block");
 
                             });
+
+                            @foreach(json_decode($invoice->forma_pago_multiple, true) as $index => $pago)
+
+                                // 1. Nueva forma pago
+                                addFormaPago('{{ $pago["forma_pago"] }}', '{{ $index }}');
+       
+                            @endforeach
 
                         });
                         
