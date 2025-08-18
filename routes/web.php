@@ -224,5 +224,6 @@ Route::get('download-pdf', [App\Http\Controllers\CloseCashController::class, 'do
 Route::post('facture-pdf', [App\Http\Controllers\FactureController::class, 'downloadPdf'])->name('facture-pdf');
 Route::post('resume-pdf', [App\Http\Controllers\FactureController::class, 'resumePdf'])->name('resume-pdf');
 Route::post('/marketinvoice-pdf', [App\Http\Controllers\MarketController::class, 'print'])->name('market.print');
+Route::post('/market-pdf', [App\Http\Controllers\MarketController::class, 'printMarket'])->name('market.printmarket');
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth'])->name('homeredirect');
