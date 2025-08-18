@@ -182,6 +182,14 @@
                             </button>
 
                         </form>
+                        <form name="print" id="printmarket" method="post" action="{{ route('market.printmarket') }}" class="mt-3">
+                            @csrf
+                            <input type="hidden" name="fecha_registro" value="{{$comprasdeldia[0]->shoppingday}}">
+                            <input type="hidden" name="AD_Org_ID" value="{{ $sucursal}}">
+                            <button type="submit" class="btn btn-outline-success w-100">
+                                Imprimir registro
+                            </button>
+                        </form>
                     </div>
                 </div>
 

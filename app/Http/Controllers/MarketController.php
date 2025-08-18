@@ -409,7 +409,7 @@ class MarketController extends Controller
         try{
             $shop = MarketShopping::findOrFail($id);
             $sucursal= $shop->sucursal;
-            $productos = $request->input('product');        
+            $productos = $request->input('product');      
             $productos = array_values(array_filter($productos, function ($valor) {
                 return !is_null($valor) && $valor !== '';
             }));
@@ -452,7 +452,8 @@ class MarketController extends Controller
             $unidades = $unidades_ordenadas;
             $quantity = $quantity_ordenado;
             $productList = [];
-            $facturas = Facture::where('fecha',$shop->shoppingday)->get();
+            //$facturas = Facture::where('fecha',$shop->shoppingday)->get();
+            $facturas = Facture::where('fecha',$shop->shoppingday)->where('sucursal',$sucursal)->get();
             foreach ($facturas as $p) {
                 $productsArray = json_decode($p->product, true);
                 foreach ($productsArray as $product) {
@@ -482,10 +483,12 @@ class MarketController extends Controller
             $opciones2 = products::all();
             //dump($opciones, $opciones2);
             $presupuesto =-1;
-            $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->get();
+            //$comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->get();
+            $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->where('sucursal',$sucursal)->get();
             $dia=$request->input('date-day');
             $presupuesto=$comprasdeldia[0]->budget ;
             $mensajeExito='¡La operación se realizó con éxito!';
+          
             return view('marketEdit', compact('comprasdeldia', 'opciones', 'opciones2','presupuesto','mensajeExito','sucursal'));
         
         } catch (Exception $e) {
@@ -493,7 +496,8 @@ class MarketController extends Controller
             $opciones2 = products::all();
             //dump($opciones, $opciones2);
             $presupuesto =-1;
-            $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->get();
+            //$comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->get();
+            $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->where('sucursal',$sucursal)->get();
             $dia=$request->input('date-day');
             $presupuesto=$comprasdeldia[0]->budget ;
             $sucursal=$comprasdeldia[0]->sucursal ;
@@ -641,6 +645,29 @@ class MarketController extends Controller
         
             $pdf = PDF::loadView('download-pdf_marketinvoice', ['comprasdeldia' => $comprasdeldia,'presupuesto'=>$presupuesto,'carton'=>$carton,'facturas'=>$facturas,'vuelto'=>$vuelto,'quantity'=>$quantity,'price'=>$price]);
             return $pdf->download("marketinvoice.pdf");
+
+    }
+
+    public function printmarket(Request $request){
+        $day = $request->fecha_registro;
+
+        $presupuesto=0;
+        $comprasdeldia = marketshopping::where('shoppingday', $day)->where('sucursal', 'ilike', "%$request->AD_Org_ID%")->get();
+        $carton =0;
+        $vuelto=0;
+        if($comprasdeldia->count() > 0) {
+
+            $presupuesto = $comprasdeldia[0]->budget;
+            $productos = json_decode($comprasdeldia[0]->product);
+            $quantity = json_decode($comprasdeldia[0]->quantity);
+            $fecha = $request->fecha_registro;
+            $sucursal = $request->AD_Org_ID;
+            $cantidad = count($productos);
+
+        }
+                
+        $pdf = PDF::loadView('download-pdf_market', ['comprasdeldia' => $comprasdeldia,'presupuesto'=>$presupuesto,'quantity'=>$quantity, 'fecha'=>$fecha, 'sucursal'=>$sucursal, 'cantidad'=>$cantidad]);
+        return $pdf->download("market.pdf");
 
     }
        
