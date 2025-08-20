@@ -98,6 +98,30 @@
                                         </div>
                                         {{-- <div class="col">Column</div> --}}
                                     </div>
+                                    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 mt-3">
+                                        <div class="col">
+                                            <label for="" class="form-label">Transferencia</label>
+                                            <select class="form-control" name="transferencia" id="transferencia">
+                                                <option value="No" {{ $comprasdeldia[0]->transferencia == 'No' ? 'selected' : '' }}>No</option>
+                                                <option value="Si" {{ $comprasdeldia[0]->transferencia == 'Si' ? 'selected' : '' }}>Si</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label for="" class="form-label">Origen</label>
+                                            <select class="form-control" name="origen" id="origen">
+                                                <option value="" {{ $comprasdeldia[0]->origen == '' ? 'selected' : '' }}></option>
+                                                @if (isset($orgs))
+                                                    @if ($orgs)
+                                                        @foreach ($orgs as $org)
+                                                            @if($org->id!=0)
+                                                                <option value="{{ $org->Name }}" {{ $comprasdeldia[0]->origen == $org->Name ? 'selected' : '' }}>{{ $org->Name }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
 
