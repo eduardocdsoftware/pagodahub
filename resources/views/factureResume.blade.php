@@ -25,9 +25,10 @@
     <table>
         <thead>
             <tr>
-                <th colspan="5">FACTURAS</th>
+                <th colspan="6">FACTURAS</th>
             </tr>
             <tr style="background-color:#2cbc9c">
+                <th>FECHA</th>
                 <th># FACTURA</th>
                 <th>METODO DE PAGO</th>
                 <th>MONTO TOTAL</th>
@@ -37,6 +38,7 @@
         </thead>
         @foreach ($facturas as $factura)
         <tr>
+            <td>{{$factura->fecha}}</td>
             <td>{{$factura->id_compra}}</td>
             <td>{{$factura->medio_de_pago?'Contado':'Credito'}}</td>
             <td>{{$factura->total}}</td>
@@ -123,7 +125,10 @@
     <form method="POST" action="{{ route('resume-pdf') }}">
         @csrf
         <input type="hidden" name="day" value="{{ $fecha }}">
+        <input type="hidden" name="day_end" value="{{ $day_end }}">
         <input type="hidden" name="sucursal" value="{{ $sucursal }}">
+        <input type="hidden" name="medio_pago" value="{{ $medio_pago }}">
+        <input type="hidden" name="pagada" value="{{ $pagada }}">
         <button type="submit" class="btn btn-primary">Imprimir</button>
     </form>
 
