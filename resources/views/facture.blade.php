@@ -46,11 +46,11 @@
         
         <div class="container">
         <div class="card">
-            <div class="card-header">Resumen del dia</div>
+            <div class="card-header">Resumen del dia / Rango Fechas</div>
                 <div class="card-body pb-0">
                     <form name="factures" id="factures" method="post" action="{{ route('factures.resume') }}">
 
-                            <div class="form-group ">
+                            <!--<div class="form-group ">
 
                                 @csrf
                                 <div class="col">
@@ -73,6 +73,54 @@
                                     <button class="btn btn-outline-secondary" type="" id="button-addon2">Buscar</button>
                                 </div>
 
+                            </div>
+                            -->
+                            @csrf
+                            <div class="row mb-3">  <!-- Cambiado a row para crear una fila -->
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Sucursal</label>
+                                    <select class="form-control" name="AD_Org_ID" id="AD_Org_ID">
+                                        @if (isset($orgs))
+                                            @if ($orgs)
+                                                @foreach ($orgs as $org)
+                                                    @if($org->id!=0)
+                                                        <option value="{{ $org->Name }}">{{ $org->Name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Medio de pago</label>
+                                    <select class="form-control" name="medio_pago" id="medio_pago">
+                                        <option value="" selected></option>
+                                        <option value="true">Contado</option>
+                                        <option value="false">Credito</option>
+                                    </select>  
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Pagada</label>
+                                    <select class="form-control" name="pagada" id="pagada">
+                                        <option value="" selected></option>
+                                        <option value="true">Sí</option>
+                                        <option value="false">No</option>
+                                    </select>  
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-3">  <!-- Cambiado a row para crear una fila -->
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Fecha Inicio</label>
+                                    <input type="date" class="form-control" placeholder="" aria-label="" aria-describedby="" spellcheck="false" data-ms-editor="true" name="day" required>    
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Fecha Fin</label>
+                                    <input type="date" class="form-control" placeholder="" aria-label="" aria-describedby="" spellcheck="false" data-ms-editor="true" name="day_end">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label"></label>
+                                    <button class="btn btn-outline-secondary mt-auto w-100 h-75" type="submit" >Buscar</button>
+                                </div>
                             </div>
                     </form>
                 </div>

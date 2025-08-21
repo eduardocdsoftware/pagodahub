@@ -172,6 +172,9 @@ class MarketController extends Controller
         $shop->unit = json_encode($unidades);
         $shop->quantity = json_encode($quantity);
         $shop->sucursal = $request->input('sucursal');
+        //AGREGADO
+        $shop->transferencia = $request->input('transferencia');
+        $shop->origen = $request->input('origen');
         $shop->save();
 
         // Procesar los datos enviados a través del formulario
@@ -392,8 +395,67 @@ class MarketController extends Controller
         $opciones = units::all();
         $opciones2 = products::all();
         $presupuesto =$comprasdeldia[0]->budget;
+
+        $APIController = new APIController();
+        ////////////
+        $name_user = auth()->user()->name;
+        $email_user = auth()->user()->email;
+        /*$user = $APIController->getModel('AD_User', '', "Name eq '$name_user' and EMail eq '$email_user'", '', '', '', 'PAGODAHUB_closecash');
         
-        return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2','presupuesto'));
+        $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $user->records[0]->AD_Org_ID->id);
+        */$user = $APIController->getModel('AD_User', '', "Name eq '$name_user' and EMail eq '$email_user'", '', '', '', 'PAGODAHUB_closecash');
+
+        // Inicializa un array para almacenar los AD_Org_ID
+        $orgs = []; // Inicializa un array para almacenar los registros de AD_Org
+        
+        foreach ($user->records as $record) {
+            $orgId = $record->AD_Org_ID->id;
+            $response = $APIController->getModel('RV_GH_Org', '', 'AD_Org_ID eq ' . $orgId);
+            
+            if(isset($response->records[0]->Parent_ID)){
+                if($response->records[0]->Parent_ID->id!==0){
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $response->records[0]->Parent_ID->id);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }else{
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $orgId);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }
+            }else{
+                    // Primera solicitud para AD_Org_ID = 1000009
+                    $response1 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000009');
+
+                    // Segunda solicitud para AD_Org_ID = 1000008
+                    $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
+
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
+                    // Combinar las respuestas en un único array
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs=$response->records;
+                        
+                    }
+            }
+        }
+        session()->put('misDatos', $orgs);
+        
+        return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2','presupuesto','orgs'));
     }
 
     /**
@@ -404,7 +466,66 @@ class MarketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
+
+        $APIController = new APIController();
+        ////////////
+        $name_user = auth()->user()->name;
+        $email_user = auth()->user()->email;
+        /*$user = $APIController->getModel('AD_User', '', "Name eq '$name_user' and EMail eq '$email_user'", '', '', '', 'PAGODAHUB_closecash');
+        
+        $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $user->records[0]->AD_Org_ID->id);
+        */$user = $APIController->getModel('AD_User', '', "Name eq '$name_user' and EMail eq '$email_user'", '', '', '', 'PAGODAHUB_closecash');
+
+        // Inicializa un array para almacenar los AD_Org_ID
+        $orgs = []; // Inicializa un array para almacenar los registros de AD_Org
+        
+        foreach ($user->records as $record) {
+            $orgId = $record->AD_Org_ID->id;
+            $response = $APIController->getModel('RV_GH_Org', '', 'AD_Org_ID eq ' . $orgId);
+            
+            if(isset($response->records[0]->Parent_ID)){
+                if($response->records[0]->Parent_ID->id!==0){
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $response->records[0]->Parent_ID->id);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }else{
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $orgId);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }
+            }else{
+                    // Primera solicitud para AD_Org_ID = 1000009
+                    $response1 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000009');
+
+                    // Segunda solicitud para AD_Org_ID = 1000008
+                    $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
+
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
+                    // Combinar las respuestas en un único array
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs=$response->records;
+                        
+                    }
+            }
+        }
+        session()->put('misDatos', $orgs);   
         
         try{
             $shop = MarketShopping::findOrFail($id);
@@ -474,6 +595,9 @@ class MarketController extends Controller
             $shop->product = json_encode($productos);
             $shop->unit = json_encode($unidades);
             $shop->quantity = json_encode($quantity);
+            //AGREGADO
+            $shop->transferencia = $request->input('transferencia');
+            $shop->origen = $request->input('origen');
             $shop->save();
             
             $day = "3000-01-01";
@@ -489,7 +613,7 @@ class MarketController extends Controller
             $presupuesto=$comprasdeldia[0]->budget ;
             $mensajeExito='¡La operación se realizó con éxito!';
           
-            return view('marketEdit', compact('comprasdeldia', 'opciones', 'opciones2','presupuesto','mensajeExito','sucursal'));
+            return view('marketEdit', compact('comprasdeldia', 'opciones', 'opciones2','presupuesto','mensajeExito','sucursal','orgs'));
         
         } catch (Exception $e) {
             $opciones = units::all();
@@ -501,7 +625,7 @@ class MarketController extends Controller
             $dia=$request->input('date-day');
             $presupuesto=$comprasdeldia[0]->budget ;
             $sucursal=$comprasdeldia[0]->sucursal ;
-            return view('marketEdit', compact('comprasdeldia','opciones', 'presupuesto','opciones2','sucursal'))->withErrors($e->getMessage());
+            return view('marketEdit', compact('comprasdeldia','opciones', 'presupuesto','opciones2','sucursal','orgs'))->withErrors($e->getMessage());
         }
     }
 
@@ -517,32 +641,7 @@ class MarketController extends Controller
     }
     public function charge(Request $request)
     {
-        $opciones = units::all();
-        $opciones2 = products::all();
-        //dump($opciones, $opciones2);
-        $presupuesto =-1;
-        $sucursal=$request->AD_Org_ID;
-        $budget=Budget::where('fecha', $request->input('date-day'))->where('sucursal', 'ilike', "%$request->AD_Org_ID%" )->first();
-        if($budget){
-            $presupuesto=$budget->presupuesto;
-        }
 
-        $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->where('sucursal', 'ilike', "%$request->AD_Org_ID%" )->where('id_compra',null )->get();
-        if ($comprasdeldia->count()>0) {
-            
-            if($budget&&$presupuesto!=$comprasdeldia[0]->budget){
-                $presupuesto=$budget->presupuesto;
-                return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2', 'presupuesto','sucursal'));
-            }
-            $presupuesto=$comprasdeldia[0]->budget;
-            return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2', 'presupuesto','sucursal'));
-        }
-        $dia =$request->input('date-day');
-
-
-        if($presupuesto>=0){
-            return view('market', compact('opciones', 'opciones2', 'presupuesto','dia','sucursal'));
-        }
         $APIController = new APIController();
         ////////////
         $name_user = auth()->user()->name;
@@ -601,6 +700,89 @@ class MarketController extends Controller
             }
         }
         session()->put('misDatos', $orgs);
+
+        $opciones = units::all();
+        $opciones2 = products::all();
+        //dump($opciones, $opciones2);
+        $presupuesto =-1;
+        $sucursal=$request->AD_Org_ID;
+        $budget=Budget::where('fecha', $request->input('date-day'))->where('sucursal', 'ilike', "%$request->AD_Org_ID%" )->first();
+        if($budget){
+            $presupuesto=$budget->presupuesto;
+        }
+
+        $comprasdeldia = marketshopping::where('shoppingday', $request->input('date-day'))->where('sucursal', 'ilike', "%$request->AD_Org_ID%" )->where('id_compra',null )->get();
+        if ($comprasdeldia->count()>0) {
+            
+            if($budget&&$presupuesto!=$comprasdeldia[0]->budget){
+                $presupuesto=$budget->presupuesto;
+                return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2', 'presupuesto','sucursal','orgs'));
+            }
+            $presupuesto=$comprasdeldia[0]->budget;
+            return view('marketEdit', compact('comprasdeldia','opciones', 'opciones2', 'presupuesto','sucursal','orgs'));
+        }
+        $dia =$request->input('date-day');
+
+
+        if($presupuesto>=0){
+            return view('market', compact('opciones', 'opciones2', 'presupuesto','dia','sucursal'));
+        }
+        //$APIController = new APIController();
+        ////////////
+        //$name_user = auth()->user()->name;
+        //$email_user = auth()->user()->email;
+        
+        //$user = $APIController->getModel('AD_User', '', "Name eq '$name_user' and EMail eq '$email_user'", '', '', '', 'PAGODAHUB_closecash');
+
+        // Inicializa un array para almacenar los AD_Org_ID
+        //$orgs = []; // Inicializa un array para almacenar los registros de AD_Org
+        
+        /*foreach ($user->records as $record) {
+            $orgId = $record->AD_Org_ID->id;
+            $response = $APIController->getModel('RV_GH_Org', '', 'AD_Org_ID eq ' . $orgId);
+            
+            if(isset($response->records[0]->Parent_ID)){
+                if($response->records[0]->Parent_ID->id!==0){
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $response->records[0]->Parent_ID->id);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }else{
+                    // Consulta el registro de AD_Org para el AD_Org_ID actual
+                    $response = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq ' . $orgId);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs[] = $response->records[0];
+                    }
+                }
+            }else{
+                    // Primera solicitud para AD_Org_ID = 1000009
+                    $response1 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000009');
+
+                    // Segunda solicitud para AD_Org_ID = 1000008
+                    $response2 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000008');
+
+                    // Tercera solicitud para AD_Org_ID = 1000012
+                    $response3 = $APIController->getModel('AD_Org', '', 'AD_Org_ID eq 1000012');
+
+                    // Combinar las respuestas en un único array
+                    $response->records = array_merge($response1->records, $response2->records, $response3->records);
+                    //tabla rv_gh_org  campo AD_Org_ID
+                    // Verifica si la consulta fue exitosa
+                    if ($response && isset($response->records[0])) {
+                        // Agrega el registro de AD_Org al array de resultados
+                        $orgs=$response->records;
+                        
+                    }
+            }
+        }
+        session()->put('misDatos', $orgs);*/
         return view('market', compact('opciones', 'opciones2', 'presupuesto','dia','orgs'))->withErrors("No hay un presupuesto creado");
     }
 

@@ -32,9 +32,10 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="5">FACTURAS</th>
+                    <th colspan="6">FACTURAS</th>
                 </tr>
                 <tr style="background-color:#2cbc9c">
+                    <th>FECHA</th>
                     <th># FACTURA</th>
                     <th>METODO DE PAGO</th>
                     <th>MONTO TOTAL</th>
@@ -44,6 +45,7 @@
             </thead>
             @foreach ($facturas as $factura)
             <tr>
+                <td>{{$factura->fecha}}</td>
                 <td>{{$factura->id_compra}}</td>
                 <td>{{$factura->medio_de_pago?'Contado':'Credito'}}</td>
                 <td>{{$factura->total}}</td>
