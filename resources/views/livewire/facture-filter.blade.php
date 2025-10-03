@@ -133,6 +133,9 @@
                                     var row = document.getElementById('row' + pago.fact_id)
                                     row.style.display = "none";
                                 });
+
+                                deselectAllCheckboxes();
+
                                 pagos=[];
                                 document.getElementById('totalCancelar').innerText=0;
                             }
