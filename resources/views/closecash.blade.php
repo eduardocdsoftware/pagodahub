@@ -439,7 +439,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td> Monto cheques</td>
+                                            <!--<td>Monto cheques</td>-->
+                                            <td>Cheques</td>
                                             <td> <input name="CheckAmtSistema" value="{{ $data->CheckAmt }}"
                                                     type="number" class="form-control" step="0.01" readonly
                                                     placeholder="0.00">
@@ -457,7 +458,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>Vale</td>
+                                            <!--<td>Vale</td>-->
+                                            <td>PLUXEE PAPEL</td>
                                             <td> <input name="valeAmt" value="{{ $data->CreditAmt }}" type="number"
                                                     class="form-control" step="0.01" readonly placeholder="0.00">
                                             </td>
@@ -542,7 +544,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td style="font-size:12px; ">Vale digital </td>
+                                            <!--<td style="font-size:12px; ">Vale digital</td>-->
+                                            <td style="font-size:12px; ">PLUXEE DIGITAL</td>
                                             <td> <input name="VoucherAmtSistema" value="{{ $data->VoucherAmt }}"
                                                     type="number" class="form-control" step="0.01" readonly
                                                     placeholder="0.00">
@@ -551,7 +554,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>Beca digital </td>
+                                            <!--<td>Beca digital</td>-->
+                                            <td>OTROS</td>
                                             <td> <input name="GrantAmtSistema" value="{{ $data->GrantAmt }}"
                                                     type="number" class="form-control" step="0.01" readonly
                                                     placeholder="0.00">
@@ -911,7 +915,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Otros</td>
+                                            <!--<td>Otros</td>-->
+                                            <td>1RA AM</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -942,7 +947,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Primera parte</td>
+                                            <!--<td>Primera parte</td>-->
+                                            <td>1RA PM</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -972,7 +978,7 @@
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <td>Vales pagoda </td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1002,9 +1008,10 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
-                                            <td> Monto cheques</td>
+                                            <!--<td>Monto cheques</td>-->
+                                            <td>Cheques</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1064,7 +1071,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Vale</td>
+                                            <!--<td>Vale</td>-->
+                                            <td>PLUXEE PAPEL</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1093,7 +1101,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta clave</td>
+                                            <!--<td>Tarjeta clave</td>-->
+                                            <td>POS CLAVE</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1121,7 +1130,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta vale</td>
+                                            <!--<td>Tarjeta vale</td>-->
+                                            <td>POS VALE</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1150,7 +1160,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta visa</td>
+                                            <!--<td>Tarjeta visa</td>-->
+                                            <td>POS VISA</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1179,7 +1190,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta master</td>
+                                            <!--<td>Tarjeta master</td>-->
+                                            <td>POS MASTER</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1206,7 +1218,7 @@
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <td>Tarjeta american</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1233,8 +1245,8 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr>-->
+                                        <!--<tr>
                                             <td>Tarjeta bac</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1261,7 +1273,7 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <td>Sencillo</td>
                                             <td>
@@ -1350,7 +1362,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Facturas propias</td>
+                                            <!--<td>Facturas propias</td>-->
+                                            <td>Facturas internas</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1379,7 +1392,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Vale digital </td>
+                                            <!--<td>Vale digital</td>-->
+                                            <td>PLUXEE DIGITAL</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1407,7 +1421,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Beca digital </td>
+                                            <!--<td>Beca digital</td>-->
+                                            <td>OTROS</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1958,7 +1973,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Otros</td>
+                                            <!--<td>Otros</td>-->
+                                            <td>1RA AM</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -1988,7 +2004,8 @@
                                         </tr>
 
                                         <tr>
-                                            <td>Primera parte</td>
+                                            <!--<td>Primera parte</td>-->
+                                            <td>1RA PM</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -2018,7 +2035,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr>
+                                        <!--<tr>
                                             <td>Vales pagoda </td>
                                             <td>
 
@@ -2049,9 +2066,10 @@
                                                     id="check_valespagodaGerente" name="check_valespagodaGerente"
                                                     {{ isset($dataday->check_x_valespagodaGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
-                                            <td> Monto cheques</td>
+                                            <!--<td> Monto cheques</td>-->
+                                            <td> Cheques</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2113,7 +2131,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Vale</td>
+                                            <!--<td>Vale</td>-->
+                                            <td>PLUXEE PAPEL</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -2145,7 +2164,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta clave</td>
+                                            <!--<td>Tarjeta clave</td>-->
+                                            <td>POS CLAVE</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
                                                     @foreach ($list as $dataday)
@@ -2175,7 +2195,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta vale</td>
+                                            <!--<td>Tarjeta vale</td>-->
+                                            <td>POS VALE</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2207,7 +2228,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta visa</td>
+                                            <!--<td>Tarjeta visa</td>-->
+                                            <td>POS VISA</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2238,7 +2260,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tarjeta master</td>
+                                            <!--<td>Tarjeta master</td>-->
+                                            <td>POS MASTER</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2270,7 +2293,7 @@
                                                     {{ isset($dataday->check_x_CardMasterGerente) ? __('checked') : __('') }}>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <td>Tarjeta american</td>
                                             <td>
 
@@ -2300,8 +2323,8 @@
                                                     id="check_CardAEGerente" name="check_CardAEGerente"
                                                     {{ isset($dataday->check_x_CardAEGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr>-->
+                                        <!--<tr>
                                             <td>Tarjeta bac</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -2331,7 +2354,7 @@
                                                     id="check_CardBACGerente" name="check_CardBACGerente"
                                                     {{ isset($dataday->check_x_CardBACGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <td>Sencillo</td>
                                             <td>
@@ -2428,7 +2451,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Facturas propias</td>
+                                            <!--<td>Facturas propias</td>-->
+                                            <td>Facturas internas</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2461,7 +2485,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Vale digital </td>
+                                            <!--<td>Vale digital</td>-->
+                                            <td>PLUXEE DIGITAL</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
@@ -2493,7 +2518,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Beca digital </td>
+                                            <!--<td>Beca digital</td>-->
+                                            <td>OTROS</td>
                                             <td>
 
                                                 @if ($list->isNotEmpty())
