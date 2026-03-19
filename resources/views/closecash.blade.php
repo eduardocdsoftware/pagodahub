@@ -978,7 +978,7 @@
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Vales pagoda </td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1008,7 +1008,7 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <!--<td>Monto cheques</td>-->
                                             <td>Cheques</td>
@@ -1218,7 +1218,7 @@
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Tarjeta american</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1245,8 +1245,8 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>-->
-                                        <!--<tr>
+                                        </tr>
+                                        <tr>
                                             <td>Tarjeta bac</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -1273,7 +1273,7 @@
                                                 <input style="visibility: hidden;" class="form-check-input"
                                                     type="checkbox" value="1" id="check_" name="check_">
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <td>Sencillo</td>
                                             <td>
@@ -2035,7 +2035,7 @@
                                             </td>
                                         </tr>
 
-                                        <!--<tr>
+                                        <tr>
                                             <td>Vales pagoda </td>
                                             <td>
 
@@ -2066,7 +2066,7 @@
                                                     id="check_valespagodaGerente" name="check_valespagodaGerente"
                                                     {{ isset($dataday->check_x_valespagodaGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <!--<td> Monto cheques</td>-->
                                             <td> Cheques</td>
@@ -2293,7 +2293,7 @@
                                                     {{ isset($dataday->check_x_CardMasterGerente) ? __('checked') : __('') }}>
                                             </td>
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Tarjeta american</td>
                                             <td>
 
@@ -2323,8 +2323,8 @@
                                                     id="check_CardAEGerente" name="check_CardAEGerente"
                                                     {{ isset($dataday->check_x_CardAEGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>-->
-                                        <!--<tr>
+                                        </tr>
+                                        <tr>
                                             <td>Tarjeta bac</td>
                                             <td>
                                                 @if ($list->isNotEmpty())
@@ -2354,7 +2354,7 @@
                                                     id="check_CardBACGerente" name="check_CardBACGerente"
                                                     {{ isset($dataday->check_x_CardBACGerente) ? __('checked') : __('') }}>
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <td>Sencillo</td>
                                             <td>
