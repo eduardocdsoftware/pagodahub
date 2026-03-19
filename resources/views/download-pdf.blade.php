@@ -777,7 +777,7 @@
                                                 @endphp
                                             </td>
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Vales pagoda</td>
                                             <td align="right">
                                                 @php
@@ -789,7 +789,7 @@
                                                     echo number_format($dataday->valespagodaFiscalizadora - $data->valespagoda, 2, ',', ' ');
                                                 @endphp
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <!--<td>Monto cheques</td>-->
                                             <td>Cheques</td>
@@ -878,7 +878,7 @@
                                             </td>
 
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Tarjeta american</td>
                                             <td align="right">
                                                 @php
@@ -886,8 +886,8 @@
                                                 @endphp
                                             </td>
 
-                                        </tr>-->
-                                        <!--<tr>
+                                        </tr>
+                                        <tr>
                                             <td>Tarjeta bac </td>
                                             <td align="right">
                                                 @php
@@ -895,7 +895,7 @@
                                                 @endphp
                                             </td>
 
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <td>Sencillo</td>
                                             <td align="right">
@@ -1391,7 +1391,7 @@
                                             </td>
 
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Vales pagoda</td>
                                             <td align="right">
                                                 @php
@@ -1403,7 +1403,7 @@
                                                     echo number_format($dataday->valespagodaGerente - $dataday->valespagodaFiscalizadora, 2, ',', ' ');
                                                 @endphp
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <!--<td>Monto cheques</td>-->
                                             <td>Cheques</td>
@@ -1504,7 +1504,7 @@
                                                 @endphp
                                             </td>
                                         </tr>
-                                        <!--<tr>
+                                        <tr>
                                             <td>Tarjeta american</td>
                                             <td align="right">
                                                 @php
@@ -1516,8 +1516,8 @@
                                                     echo number_format($dataday->CardAEGerente - $dataday->CardAEFiscalizadora, 2, ',', ' ');
                                                 @endphp
                                             </td>
-                                        </tr>-->
-                                        <!--<tr>
+                                        </tr>
+                                        <tr>
                                             <td>Tarjeta bac </td>
                                             <td align="right">
                                                 @php
@@ -1529,7 +1529,7 @@
                                                     echo number_format($dataday->CardBACGerente - $dataday->CardBACFiscalizadora, 2, ',', ' ');
                                                 @endphp
                                             </td>
-                                        </tr>-->
+                                        </tr>
                                         <tr>
                                             <td>Sencillo</td>
                                             <td align="right">
