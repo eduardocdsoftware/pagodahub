@@ -719,39 +719,39 @@ class FactureController extends Controller
     public function resume(Request $request){
 
         // Si day_end es null, igualarlo a day
-        $day_end = $request->day_end ?? $request->day;
+        //$day_end = $request->day_end ?? $request->day;
 
         $sucursal=$request->AD_Org_ID;
-        //$calculo = marketshopping::where('shoppingday', $request->day)->orderBy('shoppingday', 'desc')->where('sucursal', 'ilike', "%$sucursal%" )->get();
-        $calculo = marketshopping::whereBetween('shoppingday', [$request->day, $day_end])
+        $calculo = marketshopping::where('shoppingday', $request->day)->orderBy('shoppingday', 'desc')->where('sucursal', 'ilike', "%$sucursal%" )->get();
+        /*$calculo = marketshopping::whereBetween('shoppingday', [$request->day, $day_end])
         ->orderBy('shoppingday', 'desc')
         ->where('sucursal', 'ilike', "%$sucursal%" )
-        ->get();
+        ->get();*/
 
         $vueltoEntregado= 0;
-        //$facturas = Facture::where('fecha', $request->day)->orderBy('fecha', 'desc')->where('sucursal', 'ilike', "%$sucursal%" )->get();
+        $facturas = Facture::where('fecha', $request->day)->orderBy('fecha', 'desc')->where('sucursal', 'ilike', "%$sucursal%" )->get();
         /*$facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
         ->orderBy('fecha', 'asc')
         ->where('sucursal', 'ilike', "%$sucursal%")
         ->get();*/
 
-        $facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
+        /*$facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
         ->orderBy('fecha', 'asc')
-        ->where('sucursal', 'ilike', "%$sucursal%");
+        ->where('sucursal', 'ilike', "%$sucursal%");*/
 
         // Filtro para medio_pago
-        if ($request->filled('medio_pago')) {
+        /*if ($request->filled('medio_pago')) {
             $medioPagoValue = $request->medio_pago === 'true' ? true : false;
             $facturas->where('medio_de_pago', $medioPagoValue);
-        }
+        }*/
 
         // Filtro para pagada
-        if ($request->filled('pagada')) {
+        /*if ($request->filled('pagada')) {
             $pagadaValue = $request->pagada === 'true' ? true : false;
             $facturas->where('pagada', $pagadaValue);
-        }
+        }*/
 
-        $facturas = $facturas->get();
+        //$facturas = $facturas->get();
 
         $cantidadProductos=0;
         $tFactura=0;        
@@ -783,27 +783,27 @@ class FactureController extends Controller
             }
         }
         
-        //$fecha=$request->day;
-        $fecha = $day_end == $request->day ? $request->day : "Desde: {$request->day} --- Hasta: {$day_end}";
+        $fecha=$request->day;
+        //$fecha = $day_end == $request->day ? $request->day : "Desde: {$request->day} --- Hasta: {$day_end}";
         $presupuesto=0;
         $carton=0;
-        /*if(count($calculo)){
+        if(count($calculo)){
             $presupuesto=$calculo[0]->budget;
             $carton=$calculo[0]->carton;
             $vueltoEntregado=$calculo[0]->vuelto;
-        }*/
+        }
 
-        foreach ($calculo as $c) {
+        /*foreach ($calculo as $c) {
             $presupuesto+=$c->budget;
             $carton+=$c->carton;
             $vueltoEntregado+=$c->vuelto;
-        }
+        }*/
         
         $tComprado=0;
         $vuelto=$presupuesto+$carton-$tEfectivo-$abonado-$pagosAnteriores;
         $cheques = Cheque::where('fecha',$request->day)->where('sucursal', 'ilike', "%$sucursal%" )->get();
-        $medio_pago=$request->medio_pago;
-        $pagada=$request->pagada;
+        //$medio_pago=$request->medio_pago;
+        //$pagada=$request->pagada;
         return view('factureResume',compact('fecha',
         'cantidadProductos',
         'presupuesto',
@@ -819,50 +819,50 @@ class FactureController extends Controller
         'vueltoEntregado',
         'cheques',
         'deuda',
-        'sucursal',
-        'day_end',
-        'medio_pago',
-        'pagada'
+        'sucursal'
+        //'day_end',
+        //'medio_pago',
+        //'pagada'
         ));
     }
     public function resumePdf(Request $request){
 
         // Si day_end es null, igualarlo a day
-        $day_end = $request->day_end ?? $request->day;
+        //$day_end = $request->day_end ?? $request->day;
 
-        $sucursal=$request->AD_Org_ID;
+        //$sucursal=$request->AD_Org_ID;
 
-        //$calculo = marketshopping::where('shoppingday', $request->day)->where('sucursal', 'ilike', "%$request->sucursal%" )->orderBy('shoppingday', 'desc')->get();
-        $calculo = marketshopping::whereBetween('shoppingday', [$request->day, $day_end])
+        $calculo = marketshopping::where('shoppingday', $request->day)->where('sucursal', 'ilike', "%$request->sucursal%" )->orderBy('shoppingday', 'desc')->get();
+        /*$calculo = marketshopping::whereBetween('shoppingday', [$request->day, $day_end])
         ->orderBy('shoppingday', 'desc')
         ->where('sucursal', 'ilike', "%$sucursal%" )
-        ->get();
+        ->get();*/
 
         $vueltoEntregado= 0;
         
-        //$facturas = Facture::where('fecha', $request->day)->where('sucursal', 'ilike', "%$request->sucursal%" )->orderBy('fecha', 'desc')->get();
+        $facturas = Facture::where('fecha', $request->day)->where('sucursal', 'ilike', "%$request->sucursal%" )->orderBy('fecha', 'desc')->get();
         /*$facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
         ->orderBy('fecha', 'asc')
         ->where('sucursal', 'ilike', "%$sucursal%")
         ->get();*/
 
-        $facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
+        /*$facturas = Facture::whereBetween('fecha', [$request->day, $day_end])
         ->orderBy('fecha', 'asc')
-        ->where('sucursal', 'ilike', "%$sucursal%");
+        ->where('sucursal', 'ilike', "%$sucursal%");*/
 
         // Filtro para medio_pago
-        if ($request->filled('medio_pago')) {
+        /*if ($request->filled('medio_pago')) {
             $medioPagoValue = $request->medio_pago === 'true' ? true : false;
             $facturas->where('medio_de_pago', $medioPagoValue);
-        }
+        }*/
 
         // Filtro para pagada
-        if ($request->filled('pagada')) {
+        /*if ($request->filled('pagada')) {
             $pagadaValue = $request->pagada === 'true' ? true : false;
             $facturas->where('pagada', $pagadaValue);
-        }
+        }*/
 
-        $facturas = $facturas->get();
+        //$facturas = $facturas->get();
 
         $cantidadProductos=0;
         $tFactura=0;        
@@ -894,22 +894,22 @@ class FactureController extends Controller
             }
         }
         
-        //$fecha=$request->day;
-        $fecha = $day_end == $request->day ? $request->day : "Desde: {$request->day} --- Hasta: {$day_end}";
+        $fecha=$request->day;
+        //$fecha = $day_end == $request->day ? $request->day : "Desde: {$request->day} --- Hasta: {$day_end}";
         $presupuesto=0;
         $carton=0;
 
-        /*if(count($calculo)){
+        if(count($calculo)){
             $presupuesto=$calculo[0]->budget;
             $carton=$calculo[0]->carton;
             $vueltoEntregado=$calculo[0]->vuelto;
-        }*/
+        }
 
-        foreach ($calculo as $c) {
+        /*foreach ($calculo as $c) {
             $presupuesto+=$c->budget;
             $carton+=$c->carton;
             $vueltoEntregado+=$c->vuelto;
-        }
+        }*/
         
         $tComprado=0;
         $vuelto=$presupuesto+$carton-$tEfectivo-$abonado-$pagosAnteriores;
